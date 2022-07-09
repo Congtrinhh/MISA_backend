@@ -1,0 +1,12 @@
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\bin\Debug\net6.0\Misa.Web05.Core.deps.json
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\bin\Debug\net6.0\Misa.Web05.Core.dll
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\bin\Debug\net6.0\Misa.Web05.Core.pdb
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\obj\Debug\net6.0\Misa.Web05.Core.csproj.AssemblyReference.cache
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\obj\Debug\net6.0\Misa.Web05.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\obj\Debug\net6.0\Misa.Web05.Core.AssemblyInfoInputs.cache
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\obj\Debug\net6.0\Misa.Web05.Core.AssemblyInfo.cs
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\obj\Debug\net6.0\Misa.Web05.Core.csproj.CoreCompileInputs.cache
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\obj\Debug\net6.0\Misa.Web05.Core.dll
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\obj\Debug\net6.0\refint\Misa.Web05.Core.dll
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\obj\Debug\net6.0\Misa.Web05.Core.pdb
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05\Misa.Web05.Core\obj\Debug\net6.0\ref\Misa.Web05.Core.dll
