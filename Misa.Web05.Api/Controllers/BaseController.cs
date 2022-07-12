@@ -4,11 +4,22 @@ using Misa.Web05.Core.Exceptions;
 
 namespace Misa.Web05.Api.Controllers
 {
+    /// <summary>
+    /// Controller tổng quát
+    /// Created by Trinh Quy Cong 8/7/22
+    /// </summary>
     public class BaseController: ControllerBase
     {
+        /// <summary>
+        /// Xử lý exception
+        /// </summary>
+        /// <param name="e">exception</param>
+        /// <returns>Đối tượng chứa thông tin lỗi</returns>
         protected IActionResult HandleException(Exception e)
         {
             var errorCode = 500;
+
+            // khởi tạo đối tượng thông báo lỗi
             var errorMessage = new ErrorMessage(userMsg: e.Message, devMsg: "Có lỗi xảy ra với hệ thống của chúng ta");
 
             if (e is MISAValidationException)

@@ -1,4 +1,4 @@
-using Misa.Web05.Core.Interfaces.Repos;
+﻿using Misa.Web05.Core.Interfaces.Repos;
 using Misa.Web05.Core.Interfaces.Services;
 using Misa.Web05.Core.Services;
 using Misa.Web05.Infrastructure;
@@ -8,7 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+
+builder.Services.AddControllers().AddJsonOptions(jsonOptions =>
+{
+    // giữa cho JSON trả về PascalCase
+    jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -35,6 +40,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+// CORS
+app.UseCors(o => o.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
 
 app.MapControllers();
 

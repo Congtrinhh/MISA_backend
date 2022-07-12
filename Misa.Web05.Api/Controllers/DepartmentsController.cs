@@ -6,6 +6,9 @@ using Misa.Web05.Core.Models;
 
 namespace Misa.Web05.Api.Controllers
 {
+    /// <summary>
+    /// Created by trinh quy cong 5/7/22
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     public class DepartmentsController : BaseController
@@ -25,10 +28,43 @@ namespace Misa.Web05.Api.Controllers
 
         #region Methods
         /// <summary>
-        /// get list of department
+        /// lấy ra danh sách department và các thông tin phân trang
         /// </summary>
-        /// <returns></returns>
-        [HttpGet] 
+        /// <param name="pageIndex"></param>
+        /// <param name="size"></param>
+        /// <param name="keyword"></param>
+        /// <returns>Đối tượng paging chứa danh sách phòng ban và thông tin phân trang</returns>
+        [HttpGet]
+        public IActionResult GetPaging(int? pageIndex, int? size, string? keyword)
+        {
+            try
+            {
+                if (pageIndex == null)
+                {
+                    pageIndex = 0;
+                }
+                if (size == null)
+                {
+                    size = 10;
+                }
+                if (keyword == null)
+                {
+                    keyword = "";
+                }
+
+                var paging = _departmentRepo.GetPaging((int)pageIndex, (int)size, keyword);
+                return Ok(paging);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
+        /// <summary>
+        /// lấy ra tất cả phòng ban hiện có
+        /// </summary>
+        /// <returns>Tất cả phòng ban</returns>
+        [HttpGet("all")]
         public IActionResult GetAll()
         {
             try
@@ -43,6 +79,11 @@ namespace Misa.Web05.Api.Controllers
 
         }
 
+        /// <summary>
+        /// lấy ra phòng ban theo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Phòng ban tương ứng</returns>
         [HttpGet("{id}")]
         public IActionResult getOne(Guid id)
         {
@@ -57,6 +98,11 @@ namespace Misa.Web05.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Tạo phòng ban
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns>trả về 1 nếu thành công</returns>
         [HttpPost]
         public IActionResult CreateOne(Department d)
         {
@@ -72,6 +118,11 @@ namespace Misa.Web05.Api.Controllers
 
         }
 
+        /// <summary>
+        /// Cập nhật phòng ban
+        /// </summary>
+        /// <param name="dep"></param>
+        /// <returns>Trả về 1 nếu thành công</returns>
         [HttpPut]
         public IActionResult Update(Department dep)
         {
@@ -86,6 +137,11 @@ namespace Misa.Web05.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Xoá phòng ban
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Trả về 1 nếu thành công</returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {

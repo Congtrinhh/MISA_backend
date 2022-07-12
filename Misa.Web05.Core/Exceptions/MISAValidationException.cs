@@ -7,9 +7,20 @@ using System.Threading.Tasks;
 
 namespace Misa.Web05.Core.Exceptions
 {
+    /// <summary>
+    /// custom exception class
+    /// Created by Trinh Quy Cong 6/7/22
+    /// </summary>
     public class MISAValidationException : Exception
     {
+        /// <summary>
+        /// error message
+        /// </summary>
         public string? ErrorMessage { get; set; }
+
+        /// <summary>
+        /// đối tượng chứa danh sách thông báo lỗi
+        /// </summary>
         public IDictionary Errors { get; set; }
 
         public MISAValidationException(string? errorMessage)
@@ -23,8 +34,14 @@ namespace Misa.Web05.Core.Exceptions
             this.Errors.Add("errors", errors);
         }
 
+        /// <summary>
+        /// ghi đè property Data của đối tượng Exception để trả về mảng thông báo lỗi
+        /// </summary>
         public override IDictionary Data => this.Errors;
 
+        /// <summary>
+        /// ghi đè property Message của đối tượng Exception để trả về thông báo lỗi
+        /// </summary>
         public override string Message => this.ErrorMessage;
     }
 }

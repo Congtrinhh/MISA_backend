@@ -1,5 +1,9 @@
 ﻿namespace Misa.Web05.Core.Models
 {
+    /// <summary>
+    /// Đối tượng tổng quát
+    /// Created by Trinh Quy Cong 1/7/22
+    /// </summary>
     public class BaseEntity
     {
         #region Properties

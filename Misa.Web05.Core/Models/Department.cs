@@ -1,7 +1,7 @@
 ﻿namespace Misa.Web05.Core.Models
 {
     /// <summary>
-    /// Department
+    /// Lớp phòng ban
     /// Author: Trinh Quy Cong - 03/07/22
     /// </summary>
     public class Department:BaseEntity

@@ -10,12 +10,19 @@ using System.Threading.Tasks;
 
 namespace Misa.Web05.Core.Services
 {
+    // <summary>
+    /// Service cho đối tượng Positions
+    /// Created by Trinh quy cong 5/7/22
+    /// </summary>
     public class PositionsService : BaseService<Positions>, IPositionsService
     {
         #region Properties
+        /// <summary>
+        /// repo để tương tác với DB: thêm, sửa, xoá, đọc
+        /// </summary>
         private IPositionsRepo _positionsRepo;
-
         #endregion
+
         #region Constructor
         public PositionsService(IPositionsRepo positionsRepo) : base(positionsRepo)
         {
@@ -23,7 +30,11 @@ namespace Misa.Web05.Core.Services
         }
         #endregion
 
-
+        /// <summary>
+        /// Validate position
+        /// </summary>
+        /// <param name="pos">đối tượng</param>
+        /// <returns>true nếu hợp lệ; false nếu không hợp lệ</returns>
         protected override bool Validate(Positions pos)
         {
             bool valid = true;

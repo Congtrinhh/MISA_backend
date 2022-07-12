@@ -3,9 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Misa.Web05.Core.Interfaces.Repos;
 using Misa.Web05.Core.Interfaces.Services;
 using Misa.Web05.Core.Models;
+using Misa.Web05.Core.Resources;
 
 namespace Misa.Web05.Api.Controllers
 {
+    /// <summary>
+    /// Created by trinh quy cong 5/7/22
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     public class EmployeesController : BaseController
@@ -24,6 +28,44 @@ namespace Misa.Web05.Api.Controllers
         #endregion
 
         #region Methods
+        /// <summary>
+        /// lấy ra danh sách nhân viên và các thông tin phân trang
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="size"></param>
+        /// <param name="keyword"></param>
+        /// <returns>danh sách nhân viên và các thông tin phân trang</returns>
+        [HttpGet]
+        public IActionResult GetPaging(int? pageIndex, int? size, string? keyword)
+        {
+            try
+            {
+                if (pageIndex == null)
+                {
+                    pageIndex = int.Parse(Common.PageIndexDefault);
+                }
+                if (size == null)
+                {
+                    size = int.Parse(Common.PageSizeDefault);
+                }
+                if (keyword == null)
+                {
+                    keyword = "";
+                }
+
+                var paging = _employeeRepo.GetPaging((int)pageIndex, (int)size, keyword);
+                return Ok(paging);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
+
+        /// <summary>
+        /// Lấy ra mã code nhân viên mới
+        /// </summary>
+        /// <returns>New employee code</returns>
         [HttpGet("newEmployeeCode")]
         public IActionResult GetNewEmployeeCode()
         {
@@ -38,7 +80,11 @@ namespace Misa.Web05.Api.Controllers
             }
         }
 
-        [HttpGet]
+        /// <summary>
+        /// Lấy ra tất cả nhân viên hiện có
+        /// </summary>
+        /// <returns>tất cả nhân viên</returns>
+        [HttpGet("all")]
         public IActionResult GetAll()
         {
             try
@@ -53,6 +99,11 @@ namespace Misa.Web05.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Lấy nhân viên theo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Nhân viên tương ứng</returns>
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute] Guid id)
         {
@@ -67,6 +118,11 @@ namespace Misa.Web05.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Tạo nhân viên
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns>1 nếu thành công</returns>
         [HttpPost]
         public IActionResult CreateOne([FromBody] Employee employee)
         {
@@ -83,6 +139,11 @@ namespace Misa.Web05.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Cập nhật nhân viên
+        /// </summary>
+        /// <param name="emp"></param>
+        /// <returns>1 nếu thành công</returns>
         [HttpPut]
         public IActionResult Update(Employee emp)
         {
@@ -97,6 +158,11 @@ namespace Misa.Web05.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Xoá nhân viên
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>1 nếu thành công</returns>
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute]Guid id)
         {

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Misa.Web05.Core.Interfaces.Services
 {
+    /// <summary>
+    /// Interface tổng quát của đối tượng Positions
+    /// Created by Trinh Quy Cong 5/7/22
+    /// </summary>
     public interface IPositionsService : IBaseService<Positions>
     {
     }

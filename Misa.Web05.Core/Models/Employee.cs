@@ -1,4 +1,6 @@
-﻿namespace Misa.Web05.Core.Models
+﻿using Misa.Web05.Core.Enums;
+
+namespace Misa.Web05.Core.Models
 {
     /// <summary>
     /// Lớp Nhân viên
@@ -25,13 +27,12 @@
         /// <summary>
         /// gioi tinh
         /// </summary>
-        public int? Gender { get; set; }
+        public Gender? Gender { get; set; }
 
         /// <summary>
         /// ngay sinh
         /// </summary>
         public DateTime? DateOfBirth { get; set; }
-
 
         /// <summary>
         /// email
@@ -51,7 +52,7 @@
         /// <summary>
         /// so chung minh nhan dan
         /// </summary>
-        public string IdentityNumber { set; get; }
+        public string? IdentityNumber { set; get; }
 
         /// <summary>
         /// luong
@@ -73,7 +74,53 @@
         /// </summary>
         public string? BankName { get; set; }
 
-        
+        /// <summary>
+        /// tên phòng ban
+        /// </summary>
+        public string? DepartmentName { get; set; }
+
+        /// <summary>
+        /// tên vị trí
+        /// </summary>
+        public string? PositionName { get; set; }
+
+        /// <summary>
+        /// tên giới tính: nam, nữ, khác
+        /// </summary>
+        public string? GenderName { get
+            {
+                switch (Gender)
+                {
+                    case Enums.Gender.Male:
+                        return "Nam";
+                    case Enums.Gender.Female:
+                        return "Nữ";
+                    default: return "Khác";
+                }
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// ngày tháng năm đăng ký cmnd
+        /// </summary>
+        public DateTime? IdentityDate { get; set; }
+
+        /// <summary>
+        /// số tk ngân hàng
+        /// </summary>
+        public string? BankAccountNumber { get; set; }
+
+        /// <summary>
+        /// tên chi nhánh ngân hàng
+        /// </summary>
+        public string? BankBranchName { get; set; }
+
+        /// <summary>
+        /// nới đăng ký cmnd
+        /// </summary>
+        public string? IdentityPlace { get; set; }
+
         #endregion
 
         #region Constructor

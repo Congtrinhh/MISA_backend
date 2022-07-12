@@ -3,6 +3,7 @@ using Misa.Web05.Core.Exceptions;
 using Misa.Web05.Core.Interfaces.Repos;
 using Misa.Web05.Core.Interfaces.Services;
 using Misa.Web05.Core.Models;
+using Misa.Web05.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +13,31 @@ using System.Threading.Tasks;
 
 namespace Misa.Web05.Core.Services
 {
-    // abstract base service
+    /// <summary>
+    /// Service cho đối tượng Employee
+    /// Created by Trinh quy cong 5/7/22
+    /// </summary>
     public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
         #region Properties
+        /// <summary>
+        /// repo để tương tác với DB: thêm, sửa, xoá, đọc
+        /// </summary>
         private IEmployeeRepo _employeeRepo;
         #endregion
 
         #region Contructor
-        public EmployeeService(IEmployeeRepo employeeRepo):base(employeeRepo)
+        public EmployeeService(IEmployeeRepo employeeRepo) : base(employeeRepo)
         {
             _employeeRepo = employeeRepo;
         }
 
+        /// <summary>
+        /// thực hiện import employee từ file excel
+        /// và trả về tất cả employee tham gia vào quá trình import này
+        /// </summary>
+        /// <param name="file">file excel</param>
+        /// <returns>Tất cả employee tham gia vào quá trình import</returns>
         public IEnumerable<Employee> Import(IFormFile file)
         {
             // Validate tệp
@@ -36,6 +49,11 @@ namespace Misa.Web05.Core.Services
             return null;
         }
 
+        /// <summary>
+        /// Validate employee
+        /// </summary>
+        /// <param name="emp">employee</param>
+        /// <returns>true nếu hợp lệ; false nếu không hợp lệ</returns>
         protected override bool Validate(Employee emp)
         {
             bool valid = true;
@@ -46,11 +64,30 @@ namespace Misa.Web05.Core.Services
                 ErrorMessages.Add("Mã nhân viên không được trống");
             }
 
-            // check employee id trùng
-            if (_employeeRepo.CheckExist(emp.EmployeeId))
+            // check employee id trùng (chỉ check khi thực hiện thêm entity)
+            if (base.CrudMode.Equals(Enums.CrudMode.Add))
             {
-                valid = false;
-                ErrorMessages.Add("Mã nhân viên đã tồn tại");
+                if (_employeeRepo.CheckExist(emp.EmployeeId))
+                {
+                    valid = false;
+                    ErrorMessages.Add("Mã nhân viên đã tồn tại");
+                }
+                if (_employeeRepo.CheckExist(emp.EmployeeCode))
+                {
+                    valid = false;
+                    ErrorMessages.Add("Mã code nhân viên đã tồn tại");
+                }
+            }
+
+            // kiểm tra xem employee code mới đã tồn tại trong DB hay chưa
+            if (base.CrudMode.Equals(Enums.CrudMode.Update))
+            {
+                var exists = this._employeeRepo.CheckExist(emp.EmployeeCode);
+                if (exists)
+                {
+                    valid = false;
+                    ErrorMessages.Add("Mã code nhân viên đã tồn tại");
+                }
             }
 
             // check employee code khác null
@@ -77,20 +114,26 @@ namespace Misa.Web05.Core.Services
             }
 
             // validate email
-            var patternEmail = @"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$";
-            Regex regexEmail = new Regex(patternEmail);
-            if (!regexEmail.IsMatch(emp.Email)) 
+            if (!string.IsNullOrEmpty(emp.Email) && !CommonMethods.IsEmailValid(emp.Email))
             {
                 valid = false;
                 ErrorMessages.Add("Email không hợp lệ");
             }
 
-            // date of birth format and smaller than current date
+            // validate date of birth smaller than current date
+            //...
+            if (emp.DateOfBirth != null)
+            {
+                if (DateTime.Compare(DateTime.Now, (DateTime)emp.DateOfBirth) < 0)
+                {
+                    valid = false;
+                    ErrorMessages.Add("Ngày sinh không thể lớn hơn hôm nay");
+                }
+            }
 
             // validate phone number
-            var patternPhone = @"^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$";
-            Regex regexPhone = new Regex(patternPhone);
-            if (!regexPhone.IsMatch(emp.PhoneNumber))
+
+            if (!string.IsNullOrEmpty(emp.PhoneNumber) && !CommonMethods.IsPhoneNumberValid(emp.PhoneNumber))
             {
                 valid = false;
                 ErrorMessages.Add("Số điện thoại không hợp lệ");

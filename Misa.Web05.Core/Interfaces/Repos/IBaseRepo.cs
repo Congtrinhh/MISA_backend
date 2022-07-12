@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Misa.Web05.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,45 +15,53 @@ namespace Misa.Web05.Core.Interfaces.Repos
     public interface IBaseRepo<MISAEntity>
     {
         /// <summary>
+        /// lấy ra các entity và các thông tin phân trang
+        /// </summary>
+        /// <param name="pageIndex">trang cần lấy (tính từ 0)</param>
+        /// <param name="size">số bản ghi của trang</param>
+        /// <param name="keyword">từ khoá tìm kiếm</param>
+        /// <returns>Paging object chứa thông tin phân trang</returns>
+        Paging GetPaging(int pageIndex, int size, string keyword);
+        /// <summary>
         /// get all entities
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Danh sách tất cả entity</returns>
         IEnumerable<MISAEntity> GetAll();
 
         /// <summary>
         /// get entity by its id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id của entity</param>
+        /// <returns>Entity với id tương ứng</returns>
         MISAEntity GetById(Guid id);
 
         /// <summary>
         /// return true if entity exists
         /// return false otherwise
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id của entity</param>
+        /// <returns>true - nếu đối tượng tồn tại trong DB; false nếu ngược lại</returns>
         bool CheckExist(Guid id);
 
         /// <summary>
         /// add new entity into database
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
+        /// <param name="entity">Entity cần thêm</param>
+        /// <returns>trả về 1 nếu thêm thành công</returns>
         int Insert(MISAEntity entity);
 
         /// <summary>
         /// update entity
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
+        /// <param name="entity">Entity cần sửa</param>
+        /// <returns>trả về 1 nếu sửa thành công</returns>
         int Update(MISAEntity entity);
 
         /// <summary>
         /// delete entity from database
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Id của entity cần xoá</param>
+        /// <returns>trả về 1 nếu xoá thành công</returns>
         int Delete(Guid id);
     }
 }

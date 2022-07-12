@@ -10,9 +10,16 @@ using Misa.Web05.Core.Exceptions;
 
 namespace Misa.Web05.Core.Services
 {
+    /// <summary>
+    /// Service cho đối tượng Department
+    /// Created by Trinh quy cong 5/7/22
+    /// </summary>
     public class DepartmentService : BaseService<Department>, IDepartmentService
     {
         #region Properties
+        /// <summary>
+        /// repo để tương tác với DB: thêm, sửa, xoá, đọc
+        /// </summary>
         IDepartmentRepo _repo;
         #endregion
 
@@ -24,6 +31,11 @@ namespace Misa.Web05.Core.Services
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Validate phòng ban
+        /// </summary>
+        /// <param name="dep">đối tượng</param>
+        /// <returns>true nếu hợp lệ; false nếu không hợp lệ</returns>
         protected override bool Validate(Department dep)
         {
             bool valid = true;

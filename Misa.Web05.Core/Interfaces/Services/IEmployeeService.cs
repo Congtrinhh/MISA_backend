@@ -8,14 +8,19 @@ using System.Threading.Tasks;
 
 namespace Misa.Web05.Core.Interfaces.Services
 {
+    /// <summary>
+    /// Interface tổng quát của đối tượng Employee
+    /// Created by Trinh Quy Cong 5/7/22
+    /// </summary>
     public interface IEmployeeService: IBaseService<Employee>
     {
         /// <summary>
         /// nhận vào file exel
-        /// trả về danh sách nhân viên import được
+        /// trả về danh sách employee tham gia quá trình import 
+        /// (nếu import không thành công thì đối tượng sẽ chứa thông báo lỗi)
         /// </summary>
-        /// <param name="file"></param>
-        /// <returns></returns>
+        /// <param name="file">file excel</param>
+        /// <returns>Các employee được đưa vào quá trình import</returns>
         IEnumerable<Employee> Import(IFormFile file);
     }
 }
