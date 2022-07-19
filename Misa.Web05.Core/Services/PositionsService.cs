@@ -42,21 +42,21 @@ namespace Misa.Web05.Core.Services
             if (string.IsNullOrEmpty(pos.PositionId.ToString()))
             {
                 valid = false;
-                ErrorMessages.Add("Mã vị trí không được trống");
+                ErrorMessages.Add(Resources.ExceptionErrorMessage.PositionIdNull);
             }
 
             // check position id trùng
             if (_positionsRepo.CheckExist(pos.PositionId))
             {
                 valid = false;
-                ErrorMessages.Add("Mã vị trí đã tồn tại");
+                ErrorMessages.Add(Resources.ExceptionErrorMessage.PositionIdExists);
             }
 
             // check position name khác null
             if (string.IsNullOrEmpty(pos.PositionName))
             {
                 valid = false;
-                ErrorMessages.Add("Tên vị trí không được trống");
+                ErrorMessages.Add(Resources.ExceptionErrorMessage.PositionNameNull);
             }
             return valid;
         }

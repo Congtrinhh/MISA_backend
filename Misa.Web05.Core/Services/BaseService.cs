@@ -27,12 +27,12 @@ namespace Misa.Web05.Core.Services
         /// <summary>
         /// Mảng thông báo lỗi
         /// </summary>
-        protected List<string> ErrorMessages=new List<string>();
+        protected List<string> ErrorMessages = new List<string>();
 
         /// <summary>
         /// Chế độ thao tác với DB (thêm/sửa/xoá)
         /// </summary>
-        protected CrudMode CrudMode=CrudMode.Add;
+        protected CrudMode CrudMode = CrudMode.Add;
         #endregion
 
         #region Contructor
@@ -51,14 +51,16 @@ namespace Misa.Web05.Core.Services
         /// <exception cref="MISAValidationException">Thông báo lỗi cho người dùng</exception>
         public int Insert(MISAEntity entity)
         {
+            // set chế độ thành thêm
             this.CrudMode = CrudMode.Add;
-            // validate input
+
+            // nếu dữ liệu đầu vào không hợp lệ, ném ra exception dừng quá trình insert
             if (!Validate(entity))
             {
                 throw new MISAValidationException(ErrorMessages);
             };
 
-            // insert
+            // dữ liệu hợp lệ, thực hiện insert và trả về kết quả insert thành công hay không
             return _repo.Insert(entity);
         }
 
@@ -71,14 +73,16 @@ namespace Misa.Web05.Core.Services
         /// <exception cref="MISAValidationException"></exception>
         public int Update(MISAEntity entity)
         {
+            // set chế độ thành cập nhật
             this.CrudMode = CrudMode.Update;
-            // validate input
+
+            // nếu dữ liệu đầu vào không hợp lệ, ném ra exception dừng quá trình update
             if (!Validate(entity))
             {
                 throw new MISAValidationException(ErrorMessages);
             };
 
-            // update
+            // dữ liệu hợp lệ, thực hiện update và trả về kết quả update thành công hay không
             return _repo.Update(entity);
         }
 
@@ -90,7 +94,11 @@ namespace Misa.Web05.Core.Services
         /// </summary>
         /// <param name="employee">đối tượng</param>
         /// <returns>true-nếu hợp lệ; false nếu không hợp lệ</returns>
-        protected virtual bool Validate(MISAEntity entity) { return true; }
+        protected virtual bool Validate(MISAEntity entity)
+        {
+            // mặc định trả về true nếu các lớp con không override
+            return true;
+        }
         #endregion
     }
 }

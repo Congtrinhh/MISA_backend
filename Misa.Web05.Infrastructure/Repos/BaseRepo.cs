@@ -12,6 +12,7 @@ namespace Misa.Web05.Infrastructure.Repos
 {
     /// <summary>
     /// Class tổng quát thực thi interface IBaseRepo
+    /// Created by Trinh Quy Cong 1/7/22
     /// </summary>
     /// <typeparam name="MISAEntity"></typeparam>
     public class BaseRepo<MISAEntity> : IBaseRepo<MISAEntity>
@@ -41,8 +42,11 @@ namespace Misa.Web05.Infrastructure.Repos
         #region Contructor
         public BaseRepo()
         {
+            // khởi tạo chuỗi kết nối
             SqlConnectionString = "User Id=dev;Host=3.0.89.182;Port=3306;Database=MISA.WEB05.TQCONG; Password=12345678";
+            // lấy ra tên table trong DB (dựa vào tên model vì đặt giống nhau)
             SqlTableName = typeof(MISAEntity).Name;
+            // mặc định tên table = tên entity (model)
             SqlEntityName = SqlTableName;
         }
         #endregion
@@ -55,11 +59,14 @@ namespace Misa.Web05.Infrastructure.Repos
         /// <returns>true nếu tồn tại; ngược lại false</returns>
         public bool CheckExist(Guid id)
         {
+            // get by id
             MISAEntity entity = GetById(id);
+            // nếu tồn tại
             if (entity != null)
             {
                 return true;
             }
+            // nếu không tồn tại
             return false;
         }
 
@@ -70,11 +77,15 @@ namespace Misa.Web05.Infrastructure.Repos
         /// <returns>1 nếu xoá thành công</returns>
         public int Delete(Guid id)
         {
+            // sử dụng khối using với tài nguyên: ngay sau khi kết thúc khối lệnh, tài nguyên được giải phóng
             using (Conn = new MySqlConnection(SqlConnectionString))
             {
+                // khởi tạo câu lệnh truy vấn
                 var sql = $"DELETE FROM {SqlTableName} WHERE {SqlEntityName}Id=@id";
+                // thêm param
                 var parameters = new DynamicParameters();
                 parameters.Add("@id", id);
+                // trả về kết quả thực thi câu lệnh xoá
                 return Conn.Execute(sql, parameters);
             }
         }
@@ -87,8 +98,11 @@ namespace Misa.Web05.Infrastructure.Repos
         {
             using (Conn = new MySqlConnection(SqlConnectionString))
             {
+                // khởi tạo câu lệnh truy vấn
                 var sql = $"SELECT * FROM {SqlTableName}";
+                // lấy ra list tất cả entity
                 var entityList = Conn.Query<MISAEntity>(sql).ToList();
+                // trả về list
                 return entityList;
             }
         }
@@ -102,9 +116,12 @@ namespace Misa.Web05.Infrastructure.Repos
         {
             using (Conn = new MySqlConnection(SqlConnectionString))
             {
+                // khởi tạo câu lệnh truy vấn
                 var sql = $"SELECT * FROM {SqlTableName} WHERE {SqlEntityName}Id=@id";
+                // thêm param
                 var parameters = new DynamicParameters();
                 parameters.Add("@id", id);
+                // trả về entity hoặc null nếu không tìm thấy
                 return Conn.QueryFirstOrDefault<MISAEntity>(sql, param: parameters);
             }
         }
@@ -152,6 +169,7 @@ namespace Misa.Web05.Infrastructure.Repos
         {
             using (Conn = new MySqlConnection(SqlConnectionString))
             {
+                // khởi tạo câu lệnh sql thủ tục
                 var sql = $"Proc_Insert{SqlTableName}";
                 // create entity
                 var res = Conn.Execute(sql, entity, commandType: System.Data.CommandType.StoredProcedure);
@@ -169,8 +187,9 @@ namespace Misa.Web05.Infrastructure.Repos
         {
             using (Conn = new MySqlConnection(SqlConnectionString))
             {
+                // khởi tạo câu lệnh sql thủ tục
                 var sql = $"Proc_Update{SqlTableName}";
-                // update entity
+                // thực thi cập nhật
                 var res = Conn.Execute(sql, entity, commandType: System.Data.CommandType.StoredProcedure);
                 // tra ve 1 neu thanh cong; 0 neu that bai
                 return res;

@@ -44,8 +44,6 @@ namespace Misa.Web05.Core.Services
 
             // Định dạng tệp
 
-            // 
-
             return null;
         }
 
@@ -57,86 +55,93 @@ namespace Misa.Web05.Core.Services
         protected override bool Validate(Employee emp)
         {
             bool valid = true;
-            // check employee id khác null
-            if (string.IsNullOrEmpty(emp.EmployeeId.ToString()))
-            {
-                valid = false;
-                ErrorMessages.Add("Mã nhân viên không được trống");
-            }
-
-            // check employee id trùng (chỉ check khi thực hiện thêm entity)
-            if (base.CrudMode.Equals(Enums.CrudMode.Add))
-            {
-                if (_employeeRepo.CheckExist(emp.EmployeeId))
-                {
-                    valid = false;
-                    ErrorMessages.Add("Mã nhân viên đã tồn tại");
-                }
-                if (_employeeRepo.CheckExist(emp.EmployeeCode))
-                {
-                    valid = false;
-                    ErrorMessages.Add("Mã code nhân viên đã tồn tại");
-                }
-            }
-
-            // kiểm tra xem employee code mới đã tồn tại trong DB hay chưa
-            if (base.CrudMode.Equals(Enums.CrudMode.Update))
-            {
-                var exists = this._employeeRepo.CheckExist(emp.EmployeeCode);
-                if (exists)
-                {
-                    valid = false;
-                    ErrorMessages.Add("Mã code nhân viên đã tồn tại");
-                }
-            }
 
             // check employee code khác null
             if (string.IsNullOrEmpty(emp.EmployeeCode))
             {
                 valid = false;
-                ErrorMessages.Add("Mã code nhân viên không được trống");
+                ErrorMessages.Add(Resources.ExceptionErrorMessage.EmployeeCodeNull);
+            }
+
+            // check employee id, employee code trùng (chỉ check khi thực hiện thêm entity)
+            if (base.CrudMode.Equals(Enums.CrudMode.Add))
+            {
+                if (_employeeRepo.CheckExist(emp.EmployeeCode))
+                {
+                    valid = false;
+                    ErrorMessages.Add(Resources.ExceptionErrorMessage.EmployeeCodeExists);
+                }
+            }
+
+            // kiểm tra xem employee code mới đã tồn tại trong DB hay chưa (chỉ check khi thực hiện sửa entity)
+            if (base.CrudMode.Equals(Enums.CrudMode.Update))
+            {
+                // check employee id khác null (khi thêm mới không cần employeeId vì trong DB tự sinh)
+                if (string.IsNullOrEmpty(emp.EmployeeId.ToString()))
+                {
+                    valid = false;
+                    ErrorMessages.Add(Resources.ExceptionErrorMessage.EmployeeIdNull);
+                }
+                // nhân viên cần update
+                var currentEmployee = _employeeRepo.GetById(emp.EmployeeId);
+                // nhân viên theo mã code mới
+                var employeeFromDB = _employeeRepo.GetByEmployeeCode(emp.EmployeeCode);
+                // nếu 2 nhân viên này khác nhau, tức mã code mới đã tồn tại
+                if (!currentEmployee.EmployeeId.Equals(employeeFromDB.EmployeeId))
+                {
+                    valid = false;
+                    ErrorMessages.Add("Mã code nhân viên đã tồn tại");
+                }
             }
 
             // check employee code đúng định dạng
-            var patternEmployeeCode = @"^NV-\d{4,8}$";
+            var patternEmployeeCode = @"^NV-\d{8}$";
             Regex regexEmployeeCode = new Regex(patternEmployeeCode);
             if (!regexEmployeeCode.IsMatch(emp.EmployeeCode))
             {
                 valid = false;
-                ErrorMessages.Add("Mã code nhân viên không hợp lệ");
+                ErrorMessages.Add(Resources.ExceptionErrorMessage.EmployeeCodeInvalid);
             }
 
-            // check position name khác null
+            // check full name khác null
             if (string.IsNullOrEmpty(emp.FullName))
             {
                 valid = false;
-                ErrorMessages.Add("Tên nhân viên không được trống");
+                ErrorMessages.Add(Resources.ExceptionErrorMessage.FullNameNull);
             }
 
             // validate email
             if (!string.IsNullOrEmpty(emp.Email) && !CommonMethods.IsEmailValid(emp.Email))
             {
                 valid = false;
-                ErrorMessages.Add("Email không hợp lệ");
+                ErrorMessages.Add(Resources.ExceptionErrorMessage.EmailInvalid);
             }
 
             // validate date of birth smaller than current date
-            //...
             if (emp.DateOfBirth != null)
             {
                 if (DateTime.Compare(DateTime.Now, (DateTime)emp.DateOfBirth) < 0)
                 {
                     valid = false;
-                    ErrorMessages.Add("Ngày sinh không thể lớn hơn hôm nay");
+                    ErrorMessages.Add(Resources.ExceptionErrorMessage.DateOfBirthBiggerThanCurrentDate);
+                }
+            }
+
+            // validate identity date smaller than current date
+            if (emp.IdentityDate != null)
+            {
+                if (DateTime.Compare(DateTime.Now, (DateTime)emp.IdentityDate) < 0)
+                {
+                    valid = false;
+                    ErrorMessages.Add(Resources.ExceptionErrorMessage.IdentityDateBiggerThanCurrentDate);
                 }
             }
 
             // validate phone number
-
             if (!string.IsNullOrEmpty(emp.PhoneNumber) && !CommonMethods.IsPhoneNumberValid(emp.PhoneNumber))
             {
                 valid = false;
-                ErrorMessages.Add("Số điện thoại không hợp lệ");
+                ErrorMessages.Add(Resources.ExceptionErrorMessage.PhoneNumberInvalid);
             }
 
             return valid;

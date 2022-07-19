@@ -13,6 +13,7 @@ namespace Misa.Web05.Core.Exceptions
     /// </summary>
     public class MISAValidationException : Exception
     {
+        #region Properties
         /// <summary>
         /// error message
         /// </summary>
@@ -22,7 +23,9 @@ namespace Misa.Web05.Core.Exceptions
         /// đối tượng chứa danh sách thông báo lỗi
         /// </summary>
         public IDictionary Errors { get; set; }
+        #endregion
 
+        #region Constructor
         public MISAValidationException(string? errorMessage)
         {
             ErrorMessage = errorMessage;
@@ -31,9 +34,11 @@ namespace Misa.Web05.Core.Exceptions
         public MISAValidationException(List<string> errors)
         {
             Errors = new Dictionary<string, object>();
-            this.Errors.Add("errors", errors);
+            this.Errors.Add(Resources.Common.ErrorFieldName, errors);
         }
+        #endregion
 
+        #region Methods
         /// <summary>
         /// ghi đè property Data của đối tượng Exception để trả về mảng thông báo lỗi
         /// </summary>
@@ -43,5 +48,6 @@ namespace Misa.Web05.Core.Exceptions
         /// ghi đè property Message của đối tượng Exception để trả về thông báo lỗi
         /// </summary>
         public override string Message => this.ErrorMessage;
+        #endregion
     }
 }

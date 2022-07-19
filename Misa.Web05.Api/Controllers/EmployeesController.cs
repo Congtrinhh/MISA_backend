@@ -40,6 +40,7 @@ namespace Misa.Web05.Api.Controllers
         {
             try
             {
+                // set giá trị mặc định cho các tham số không bắt buộc
                 if (pageIndex == null)
                 {
                     pageIndex = int.Parse(Common.PageIndexDefault);
@@ -53,8 +54,29 @@ namespace Misa.Web05.Api.Controllers
                     keyword = "";
                 }
 
+                // lấy ra đối tương paging
                 var paging = _employeeRepo.GetPaging((int)pageIndex, (int)size, keyword);
+                // trả về đối tượng paging
                 return Ok(paging);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
+
+        /// <summary>
+        /// Xoá nhiều employee
+        /// </summary>
+        /// <param name="ids">mảng employee id</param>
+        /// <returns>số bản ghi xoá thành công</returns>
+        [HttpDelete]
+        public IActionResult DeleteMany(Guid[] ids)
+        {
+            try
+            {
+                var res = _employeeRepo.DeleteMany(ids);
+                return Ok(res);
             }
             catch (Exception e)
             {
@@ -71,7 +93,7 @@ namespace Misa.Web05.Api.Controllers
         {
             try
             {
-                string employeeCode = _employeeRepo.getNewEmployeeCode();
+                string employeeCode = _employeeRepo.GetNewEmployeeCode();
                 return Ok(employeeCode);
             }
             catch (Exception e)

@@ -117,4 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DateOfBirthBiggerThanCurrentDate" xml:space="preserve">
+    <value>Ngày sinh không thể lớn hơn ngày hiện tại</value>
+  </data>
+  <data name="DepartmentIdExists" xml:space="preserve">
+    <value>Mã phòng ban đã tồn tại</value>
+  </data>
+  <data name="DepartmentIdNull" xml:space="preserve">
+    <value>Mã phòng ban không được trống</value>
+  </data>
+  <data name="DepartmentNameNull" xml:space="preserve">
+    <value>Tên phòng ban không được trống</value>
+  </data>
+  <data name="DevMessage400" xml:space="preserve">
+    <value>Có lỗi xảy ra với hệ thống</value>
+  </data>
+  <data name="DevMessage500" xml:space="preserve">
+    <value>Có lỗi xảy ra với hệ thống</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Email không hợp lệ</value>
+  </data>
+  <data name="EmployeeCodeExists" xml:space="preserve">
+    <value>Mã code nhân viên đã tồn tại</value>
+  </data>
+  <data name="EmployeeCodeInvalid" xml:space="preserve">
+    <value>Mã code nhân viên không hợp lệ</value>
+  </data>
+  <data name="EmployeeCodeNull" xml:space="preserve">
+    <value>Mã code nhân viên không được trống</value>
+  </data>
+  <data name="EmployeeIdExists" xml:space="preserve">
+    <value>Mã nhân viên đã tồn tại</value>
+  </data>
+  <data name="EmployeeIdNull" xml:space="preserve">
+    <value>Mã nhân viên không được trống</value>
+  </data>
+  <data name="FullNameNull" xml:space="preserve">
+    <value>Họ tên không được trống</value>
+  </data>
+  <data name="IdentityDateBiggerThanCurrentDate" xml:space="preserve">
+    <value>Ngày cấp chứng minh nhân dân không thể lớn hơn ngày hiện tại</value>
+  </data>
+  <data name="PhoneNumberInvalid" xml:space="preserve">
+    <value>Số điện thoại không hợp lệ</value>
+  </data>
+  <data name="PositionIdExists" xml:space="preserve">
+    <value>Mã vị trí  đã tồn tại</value>
+  </data>
+  <data name="PositionIdNull" xml:space="preserve">
+    <value>Mã vị trí không được trống</value>
+  </data>
+  <data name="PositionNameNull" xml:space="preserve">
+    <value>Tên vị trí không được trống</value>
+  </data>
+  <data name="UserMessage400" xml:space="preserve">
+    <value>Dữ liệu đầu vào không hợp lệ</value>
+  </data>
+  <data name="UserMessage500" xml:space="preserve">
+    <value>Có lỗi xảy ra với hệ thống, vui lòng thử lại sau</value>
+  </data>
 </root>

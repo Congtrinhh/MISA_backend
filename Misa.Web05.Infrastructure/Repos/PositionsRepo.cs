@@ -19,6 +19,7 @@ namespace Misa.Web05.Infrastructure.Repos
             // lấy ra từ 'Positions'
             base.SqlTableName = typeof(Positions).Name.ToString();
             // lấy ra từ 'Position'; cần làm việc này vì trong table Positions có trường PositionId (không có s)
+            // , ta sẽ dùng property SqlEntityName kết hợp với SqlTableName để viết câu lệnh sql
             base.SqlEntityName = base.SqlTableName.Substring(0, base.SqlTableName.Length - 1);
         }
     }

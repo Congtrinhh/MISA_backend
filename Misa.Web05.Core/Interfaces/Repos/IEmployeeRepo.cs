@@ -14,6 +14,13 @@ namespace Misa.Web05.Core.Interfaces.Repos
     public interface IEmployeeRepo:IBaseRepo<Employee>
     {
         /// <summary>
+        /// Xoá nhiều employee
+        /// </summary>
+        /// <param name="listOfId">danh sách id</param>
+        /// <returns>số bản ghi được xoá</returns>
+        int DeleteMany(Guid[] listOfId);
+
+        /// <summary>
         /// insert list employees from excel file import
         /// return the number of inserted employees
         /// </summary>
@@ -25,7 +32,7 @@ namespace Misa.Web05.Core.Interfaces.Repos
         /// get new employee code to insert new employee
         /// </summary>
         /// <returns>Employee code mới</returns>
-        string getNewEmployeeCode();
+        string GetNewEmployeeCode();
 
         /// <summary>
         /// return true if employee code
@@ -34,5 +41,12 @@ namespace Misa.Web05.Core.Interfaces.Repos
         /// <param name="id">Employee code</param>
         /// <returns>true - nếu đối tượng tồn tại; false - ngược lại</returns>
         bool CheckExist(string employeeCode);
+
+        /// <summary>
+        /// get employee by employee code
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns>employee</returns>
+        Employee GetByEmployeeCode(string employeeCode);
     }
 }

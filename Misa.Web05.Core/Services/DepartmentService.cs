@@ -39,25 +39,25 @@ namespace Misa.Web05.Core.Services
         protected override bool Validate(Department dep)
         {
             bool valid = true;
-            // check position id khác null
+            // check department id khác null
             if (string.IsNullOrEmpty(dep.DepartmentId.ToString()))
             {
                 valid = false;
-                ErrorMessages.Add("Mã phòng ban không được trống");
+                ErrorMessages.Add(Resources.ExceptionErrorMessage.DepartmentIdNull);
             }
 
-            // check position id trùng
+            // check department id trùng
             if (_repo.CheckExist(dep.DepartmentId))
             {
                 valid = false;
-                ErrorMessages.Add("Mã phòng ban đã tồn tại");
+                ErrorMessages.Add(Resources.ExceptionErrorMessage.DepartmentIdExists);
             }
 
-            // check position name khác null
+            // check department name khác null
             if (string.IsNullOrEmpty(dep.DepartmentName))
             {
                 valid = false;
-                ErrorMessages.Add("Tên phòng ban không được trống");
+                ErrorMessages.Add(Resources.ExceptionErrorMessage.DepartmentNameNull);
             }
             return valid;
         }

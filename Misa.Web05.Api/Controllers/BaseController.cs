@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Misa.Web05.Core.Exceptions;
+using Misa.Web05.Core.Resources;
 
 namespace Misa.Web05.Api.Controllers
 {
@@ -20,19 +21,23 @@ namespace Misa.Web05.Api.Controllers
             var errorCode = 500;
 
             // khởi tạo đối tượng thông báo lỗi
-            var errorMessage = new ErrorMessage(userMsg: e.Message, devMsg: "Có lỗi xảy ra với hệ thống của chúng ta");
+            var errorMessage = new ErrorMessage(userMsg: e.Message, devMsg: Core.Resources.ExceptionErrorMessage.DevMessage500);
 
+            // lỗi do client 
             if (e is MISAValidationException)
             {
                 errorCode = 400;
-                errorMessage.userMsg = "Dữ liệu đầu vào không hợp lệ";
+                errorMessage.userMsg = Core.Resources.ExceptionErrorMessage.UserMessage400;
                 errorMessage.data = e.Data;
-            } else
+            } 
+            // lỗi do server
+            else
             {
-                errorMessage.userMsg = "Có lỗi xảy ra với hệ thống";
                 errorCode = 500;
+                errorMessage.userMsg = Core.Resources.ExceptionErrorMessage.UserMessage500;
             }
 
+            // trả về status code với mã lỗi (400/500) và chi tiết lỗi
             return StatusCode(errorCode, errorMessage);
         }
     }

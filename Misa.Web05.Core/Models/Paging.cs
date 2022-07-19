@@ -55,8 +55,5 @@ namespace Misa.Web05.Core.Models
         }
 
         #endregion
-
-
-
     }
 }

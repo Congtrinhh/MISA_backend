@@ -61,6 +61,15 @@ namespace Misa.Web05.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to errors.
+        /// </summary>
+        public static string ErrorFieldName {
+            get {
+                return ResourceManager.GetString("ErrorFieldName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 0.
         /// </summary>
         public static string PageIndexDefault {
