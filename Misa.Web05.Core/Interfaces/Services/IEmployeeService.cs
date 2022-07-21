@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Misa.Web05.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -22,5 +23,11 @@ namespace Misa.Web05.Core.Interfaces.Services
         /// <param name="file">file excel</param>
         /// <returns>Các employee được đưa vào quá trình import</returns>
         IEnumerable<Employee> Import(IFormFile file);
+
+        /// <summary>
+        /// xuất tất cả employee ra 1 file excel
+        /// </summary>
+        /// <returns>đối tượng Stream chứa excel file và các thông tin khác</returns>
+        Stream Export();
     }
 }
