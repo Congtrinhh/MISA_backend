@@ -94,7 +94,7 @@ namespace Misa.Web05.Infrastructure.Repos
         /// lấy ra tất cả đối tượng trong DB
         /// </summary>
         /// <returns>tất cả đối tượng trong DB</returns>
-        public IEnumerable<MISAEntity> GetAll()
+        public virtual IEnumerable<MISAEntity> GetAll()
         {
             using (Conn = new MySqlConnection(SqlConnectionString))
             {
@@ -112,7 +112,7 @@ namespace Misa.Web05.Infrastructure.Repos
         /// </summary>
         /// <param name="id">id</param>
         /// <returns>đối tượng với id tương ứng</returns>
-        public MISAEntity GetById(Guid id)
+        public virtual MISAEntity GetById(Guid id)
         {
             using (Conn = new MySqlConnection(SqlConnectionString))
             {

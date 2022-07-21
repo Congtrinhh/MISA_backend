@@ -97,7 +97,6 @@ namespace Misa.Web05.Core.Models
                         return "Nữ";
                     default: return "Khác";
                 }
-                return "";
             }
         }
 

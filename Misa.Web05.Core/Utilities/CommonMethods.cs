@@ -42,7 +42,7 @@ namespace Misa.Web05.Core.Utilities
         /// </summary>
         /// <param name="value">a string</param>
         /// <returns>an empty string if the passed value is null</returns>
-        public static string GetEmptyStringIfNull(string value)
+        public static string GetEmptyStringIfNull(string? value)
         {
             if (value == null)
             {

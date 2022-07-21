@@ -90,11 +90,11 @@ namespace Misa.Web05.Core.Services
                 if (!currentEmployee.EmployeeId.Equals(employeeFromDB.EmployeeId))
                 {
                     valid = false;
-                    ErrorMessages.Add("Mã code nhân viên đã tồn tại");
+                    ErrorMessages.Add(Resources.ExceptionErrorMessage.EmployeeCodeExists);
                 }
             }
 
-            // check employee code đúng định dạng
+            // check employee code đúng định dạng; ví dụ định dạng hợp lệ: NV-12345789
             var patternEmployeeCode = @"^NV-\d{8}$";
             Regex regexEmployeeCode = new Regex(patternEmployeeCode);
             if (!regexEmployeeCode.IsMatch(emp.EmployeeCode))

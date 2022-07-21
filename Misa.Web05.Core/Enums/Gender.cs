@@ -21,5 +21,10 @@ namespace Misa.Web05.Core.Enums
         /// giới tính nữ: 0
         /// </summary>
         Female = 0,
+
+        /// <summary>
+        /// giới tính khác: 2
+        /// </summary>
+        Other = 2,
     }
 }

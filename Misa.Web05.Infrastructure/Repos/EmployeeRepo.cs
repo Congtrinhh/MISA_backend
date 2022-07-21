@@ -55,6 +55,8 @@ namespace Misa.Web05.Infrastructure.Repos
             {
                 // khởi tạo câu lệnh sql
                 var sql = $"DELETE FROM {SqlTableName} WHERE EmployeeId IN (";
+
+                // lặp qua và gán các id vào mệnh đề IN
                 foreach(var id in listOfId)
                 {
                     sql += $"'{id}',";
@@ -88,6 +90,45 @@ namespace Misa.Web05.Infrastructure.Repos
 
                 // trả về employee hoặc null nếu không tìm được
                 var employee = Conn.QueryFirstOrDefault<Employee>(sql, parameters);
+                return employee;
+            }
+        }
+
+        /// <summary>
+        /// lấy ra ds tất cả employee
+        /// </summary>
+        /// <returns>list employee</returns>
+        public override IEnumerable<Employee> GetAll()
+        {
+            using (base.Conn = new MySqlConnection(base.SqlConnectionString))
+            {
+                // khởi tạo câu lệnh sql
+                var sql = "SELECT * FROM View_Employee";
+                
+                // trả về danh sách employee
+                return Conn.Query<Employee>(sql: sql).ToList();
+            }
+        }
+
+
+        /// <summary>
+        /// get employee by id, sử dụng procedure thay vì câu lệnh sql thường
+        /// </summary>
+        /// <param name="id">employee id</param>
+        /// <returns>employee với id tương ứng</returns>
+        public override Employee GetById(Guid id)
+        {
+            using (base.Conn = new MySqlConnection(base.SqlConnectionString))
+            {
+                // khởi tạo câu lệnh sql
+                var sql = "Proc_GetEmployeeById";
+
+                // thêm tham số
+                var parameters = new DynamicParameters();
+                parameters.Add("@EmployeeId", id);
+
+                // trả về employee hoặc null nếu không tìm được
+                var employee = Conn.QueryFirstOrDefault<Employee>(sql: sql, param: parameters, commandType: System.Data.CommandType.StoredProcedure);
                 return employee;
             }
         }
