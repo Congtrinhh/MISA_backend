@@ -9,44 +9,51 @@ namespace Misa.Web05.Core.Interfaces.Repos
 {
     /// <summary>
     /// Interface repo cho đối tượng Employee
-    /// Created by Trinh Quy Cong 5/7/22
+    /// Created by TQCONG 5/7/2022
     /// </summary>
     public interface IEmployeeRepo:IBaseRepo<Employee>
     {
+        #region Methods
+
         /// <summary>
         /// Xoá nhiều employee
         /// </summary>
-        /// <param name="listOfId">danh sách id</param>
-        /// <returns>số bản ghi được xoá</returns>
+        /// <param name="listOfId">Danh sách id</param>
+        /// <returns>Số bản ghi được xoá</returns>
+        /// Created by TQCONG 5/7/2022
         int DeleteMany(Guid[] listOfId);
 
         /// <summary>
-        /// insert list employees from excel file import
-        /// return the number of inserted employees
+        /// Thêm một danh sách nhân viên vào database
+        /// từ file excel nhập khẩu
         /// </summary>
         /// <param name="employees">Danh sách employee</param>
         /// <returns>Số bản ghi được import thành công</returns>
+        /// Created by TQCONG 5/7/2022
         int Import(List<Employee> employees);
 
         /// <summary>
-        /// get new employee code to insert new employee
+        /// Lấy mã employee mới (employeeCode)
         /// </summary>
         /// <returns>Employee code mới</returns>
+        /// Created by TQCONG 5/7/2022
         string GetNewEmployeeCode();
 
         /// <summary>
-        /// return true if employee code
-        /// return false otherwise
+        /// Trả về true nếu đôi tượng tồn tại; ngược lại, trả về false
         /// </summary>
         /// <param name="id">Employee code</param>
         /// <returns>true - nếu đối tượng tồn tại; false - ngược lại</returns>
+        /// Created by TQCONG 5/7/2022
         bool CheckExist(string employeeCode);
 
         /// <summary>
-        /// get employee by employee code
+        /// Lấy ra employee theo employeeCode
         /// </summary>
-        /// <param name="employeeCode"></param>
-        /// <returns>employee</returns>
+        /// <param name="employeeCode">EmployeeCode</param>
+        /// <returns>Employee tương ứng</returns>
+        /// Created by TQCONG 5/7/2022
         Employee GetByEmployeeCode(string employeeCode);
+        #endregion
     }
 }

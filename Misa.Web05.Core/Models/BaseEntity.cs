@@ -2,28 +2,28 @@
 {
     /// <summary>
     /// Đối tượng tổng quát
-    /// Created by Trinh Quy Cong 1/7/22
+    /// Created by TQCONG 1/7/2022
     /// </summary>
     public class BaseEntity
     {
         #region Properties
         /// <summary>
-        /// ngay tao
+        /// Ngày tạo
         /// </summary>
         public DateTime? CreatedDate { get; set; }
 
         /// <summary>
-        /// ngay sua
+        /// Ngày sửa
         /// </summary>
         public DateTime? ModifiedDate { get; set; }
 
         /// <summary>
-        /// tao boi ai
+        /// Người tạo
         /// </summary>
         public string? CreatedBy { get; set; }
 
         /// <summary>
-        /// sua boi ai
+        /// Người sửa
         /// </summary>
         public string? ModifiedBy { get; set; }
         #endregion

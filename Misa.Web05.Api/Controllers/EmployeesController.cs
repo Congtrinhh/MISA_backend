@@ -12,7 +12,8 @@ using OfficeOpenXml.Table;
 namespace Misa.Web05.Api.Controllers
 {
     /// <summary>
-    /// Created by trinh quy cong 5/7/22
+    /// Controller cho class Employee
+    /// Created by TQCONG 5/7/22
     /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
@@ -34,9 +35,10 @@ namespace Misa.Web05.Api.Controllers
         #region Methods
 
         /// <summary>
-        /// xuất khẩu danh sách tất cả nhân viên có trong DB ra 1 file excel
+        /// Xuất khẩu danh sách tất cả nhân viên có trong DB ra 1 file excel
         /// </summary>
-        /// <returns>file excel chứa tất cả nhân viên</returns>
+        /// <returns>File excel chứa tất cả nhân viên</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpGet("export-excel")]
         public IActionResult Export()
         {
@@ -54,12 +56,13 @@ namespace Misa.Web05.Api.Controllers
         }
 
         /// <summary>
-        /// lấy ra danh sách nhân viên và các thông tin phân trang
+        /// Lấy ra danh sách nhân viên và các thông tin phân trang
         /// </summary>
-        /// <param name="pageIndex"></param>
-        /// <param name="size"></param>
-        /// <param name="keyword"></param>
-        /// <returns>danh sách nhân viên và các thông tin phân trang</returns>
+        /// <param name="pageIndex">Trang cần lấy (bắt đầu từ 0)</param>
+        /// <param name="size">Số item/trang</param>
+        /// <param name="keyword">Từ khoá tìm kiếm</param>
+        /// <returns>Danh sách nhân viên và các thông tin phân trang</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpGet]
         public IActionResult GetPaging(int? pageIndex, int? size, string? keyword)
         {
@@ -93,10 +96,11 @@ namespace Misa.Web05.Api.Controllers
         /// <summary>
         /// Xoá nhiều employee
         /// </summary>
-        /// <param name="ids">mảng employee id</param>
-        /// <returns>số bản ghi xoá thành công</returns>
+        /// <param name="ids">Mảng employee id</param>
+        /// <returns>Số bản ghi xoá thành công</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpDelete]
-        public IActionResult DeleteMany(Guid[] ids) // frombody
+        public IActionResult DeleteMany(Guid[] ids)
         {
             try
             {
@@ -113,6 +117,7 @@ namespace Misa.Web05.Api.Controllers
         /// Lấy ra mã code nhân viên mới
         /// </summary>
         /// <returns>New employee code</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpGet("newEmployeeCode")]
         public IActionResult GetNewEmployeeCode()
         {
@@ -130,7 +135,8 @@ namespace Misa.Web05.Api.Controllers
         /// <summary>
         /// Lấy ra tất cả nhân viên hiện có
         /// </summary>
-        /// <returns>tất cả nhân viên</returns>
+        /// <returns>Tất cả nhân viên</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpGet("all")]
         public IActionResult GetAll()
         {
@@ -151,6 +157,7 @@ namespace Misa.Web05.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Nhân viên tương ứng</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute] Guid id)
         {
@@ -168,8 +175,9 @@ namespace Misa.Web05.Api.Controllers
         /// <summary>
         /// Tạo nhân viên
         /// </summary>
-        /// <param name="employee"></param>
+        /// <param name="employee">Đối tượng employee</param>
         /// <returns>1 nếu thành công</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpPost]
         public IActionResult CreateOne([FromBody] Employee employee)
         {
@@ -189,8 +197,9 @@ namespace Misa.Web05.Api.Controllers
         /// <summary>
         /// Cập nhật nhân viên
         /// </summary>
-        /// <param name="emp"></param>
+        /// <param name="emp">Đối tượng employee</param>
         /// <returns>1 nếu thành công</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpPut]
         public IActionResult Update(Employee emp)
         {
@@ -210,6 +219,7 @@ namespace Misa.Web05.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>1 nếu thành công</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] Guid id)
         {

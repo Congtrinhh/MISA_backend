@@ -119,11 +119,26 @@
   </resheader>
   <data name="ErrorFieldName" xml:space="preserve">
     <value>errors</value>
+    <comment>tên property cho mảng thông báo lỗi trả về client</comment>
   </data>
   <data name="PageIndexDefault" xml:space="preserve">
     <value>0</value>
+    <comment>trang mặc định</comment>
   </data>
   <data name="PageSizeDefault" xml:space="preserve">
     <value>20</value>
+    <comment>số bản ghi/trang mặc định</comment>
+  </data>
+  <data name="RegexEmail" xml:space="preserve">
+    <value>^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$</value>
+    <comment>biểu thức chính quy validate email hợp lệ</comment>
+  </data>
+  <data name="RegexEmployeeCode" xml:space="preserve">
+    <value>^NV-\d{4}$</value>
+    <comment>biểu thức chính quy validate mã nhân viên hợp lệ</comment>
+  </data>
+  <data name="RegexPhoneNumber" xml:space="preserve">
+    <value>^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$</value>
+    <comment>biểu thức chính quy validate số điện thoại hợp lệ</comment>
   </data>
 </root>

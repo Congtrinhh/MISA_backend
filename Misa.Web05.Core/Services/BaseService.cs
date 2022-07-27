@@ -12,9 +12,9 @@ namespace Misa.Web05.Core.Services
 {
     /// <summary>
     /// Lớp thực thi interface tổng quát của các service
-    /// Created by Trinh Quy Cong 5/7/22
+    /// Created by TQCONG 5/7/2022
     /// </summary>
-    /// <typeparam name="MISAEntity">Employee/Department/Positions/...</typeparam>
+    /// <typeparam name="MISAEntity">Một trong các class như Employee/Department/Positions/...</typeparam>
     public class BaseService<MISAEntity> : IBaseService<MISAEntity>
     {
 
@@ -44,11 +44,12 @@ namespace Misa.Web05.Core.Services
 
         #region Methods
         /// <summary>
-        /// Validate đối tượng, sau đó thêm vào DB
+        /// Validate đối tượng, sau đó thêm vào database
         /// </summary>
-        /// <param name="entity">đối tượng</param>
+        /// <param name="entity">Đối tượng</param>
         /// <returns>1 nếu thành công</returns>
         /// <exception cref="MISAValidationException">Thông báo lỗi cho người dùng</exception>
+        /// CreatedBy TQCONG 5/7/2022
         public int Insert(MISAEntity entity)
         {
             // set chế độ thành thêm
@@ -67,10 +68,10 @@ namespace Misa.Web05.Core.Services
         /// <summary>
         /// Validate đối tượng, sau đó cập nhật 
         /// </summary>
-        /// <param name="entity">đối tượng</param>
+        /// <param name="entity">Đối tượng</param>
         /// <returns>1 nếu thành công</returns>
         /// <exception cref="MISAValidationException">Thông báo lỗi cho người dùng</exception>
-        /// <exception cref="MISAValidationException"></exception>
+        /// CreatedBy TQCONG 5/7/2022
         public int Update(MISAEntity entity)
         {
             // set chế độ thành cập nhật
@@ -86,14 +87,13 @@ namespace Misa.Web05.Core.Services
             return _repo.Update(entity);
         }
 
-
-
         /// <summary>
-        /// validate đối tượng nhận vào
-        /// các lớp con sẽ override phương thức này nếu muốn validate theo cách của nó
+        /// Validate đối tượng nhận vào
+        /// Các lớp con sẽ override phương thức này nếu muốn validate theo cách của nó
         /// </summary>
-        /// <param name="employee">đối tượng</param>
+        /// <param name="employee">Đối tượng</param>
         /// <returns>true-nếu hợp lệ; false nếu không hợp lệ</returns>
+        /// CreatedBy TQCONG 5/7/2022
         protected virtual bool Validate(MISAEntity entity)
         {
             // mặc định trả về true nếu các lớp con không override

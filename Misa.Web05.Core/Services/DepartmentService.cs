@@ -12,7 +12,7 @@ namespace Misa.Web05.Core.Services
 {
     /// <summary>
     /// Service cho đối tượng Department
-    /// Created by Trinh quy cong 5/7/22
+    /// Created by TQCONG 5/7/2022
     /// </summary>
     public class DepartmentService : BaseService<Department>, IDepartmentService
     {
@@ -34,8 +34,9 @@ namespace Misa.Web05.Core.Services
         /// <summary>
         /// Validate phòng ban
         /// </summary>
-        /// <param name="dep">đối tượng</param>
+        /// <param name="dep">Đối tượng phòng ban</param>
         /// <returns>true nếu hợp lệ; false nếu không hợp lệ</returns>
+        /// CreatedBy TQCONG 5/7/2022
         protected override bool Validate(Department dep)
         {
             bool valid = true;

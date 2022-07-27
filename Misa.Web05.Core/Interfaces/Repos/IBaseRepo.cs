@@ -8,60 +8,69 @@ using System.Threading.Tasks;
 namespace Misa.Web05.Core.Interfaces.Repos
 {
     /// <summary>
-    /// Base interface for database manipulation
-    /// CreatedBy Trinh Quy Cong - 5/7/2022
+    /// Base interface để tương tác với database
+    /// CreatedBy TQCONG - 5/7/2022
     /// </summary>
-    /// <typeparam name="MISAEntity"></typeparam>
+    /// <typeparam name="MISAEntity">Một trong các class như Employee, Department,..</typeparam>
     public interface IBaseRepo<MISAEntity>
     {
+        #region Methods
         /// <summary>
-        /// lấy ra các entity và các thông tin phân trang
+        /// Lấy ra các entity và các thông tin phân trang
         /// </summary>
-        /// <param name="pageIndex">trang cần lấy (tính từ 0)</param>
-        /// <param name="size">số bản ghi của trang</param>
-        /// <param name="keyword">từ khoá tìm kiếm</param>
+        /// <param name="pageIndex">Trang cần lấy (tính từ 0)</param>
+        /// <param name="size">Số bản ghi của trang</param>
+        /// <param name="keyword">Từ khoá tìm kiếm</param>
         /// <returns>Paging object chứa thông tin phân trang</returns>
+        /// CreatedBy TQCONG 5/7/2022
         Paging GetPaging(int pageIndex, int size, string keyword);
+
         /// <summary>
-        /// get all entities
+        /// Lấy ra tất cả entity
         /// </summary>
         /// <returns>Danh sách tất cả entity</returns>
+        /// CreatedBy TQCONG 5/7/2022
         IEnumerable<MISAEntity> GetAll();
 
         /// <summary>
-        /// get entity by its id
+        /// Lẩy ra entity theo id
         /// </summary>
         /// <param name="id">Id của entity</param>
         /// <returns>Entity với id tương ứng</returns>
+        /// CreatedBy TQCONG 5/7/2022
         MISAEntity GetById(Guid id);
 
         /// <summary>
-        /// return true if entity exists
-        /// return false otherwise
+        /// Trả về true nếu tồn tại; ngược lại, trả về false
         /// </summary>
         /// <param name="id">Id của entity</param>
         /// <returns>true - nếu đối tượng tồn tại trong DB; false nếu ngược lại</returns>
+        /// CreatedBy TQCONG 5/7/2022
         bool CheckExist(Guid id);
 
         /// <summary>
-        /// add new entity into database
+        /// Tạo entity
         /// </summary>
         /// <param name="entity">Entity cần thêm</param>
-        /// <returns>trả về 1 nếu thêm thành công</returns>
+        /// <returns>Trả về 1 nếu thêm thành công</returns>
+        /// CreatedBy TQCONG 5/7/2022
         int Insert(MISAEntity entity);
 
         /// <summary>
-        /// update entity
+        /// Sửa entity
         /// </summary>
         /// <param name="entity">Entity cần sửa</param>
-        /// <returns>trả về 1 nếu sửa thành công</returns>
+        /// <returns>Trả về 1 nếu sửa thành công</returns>
+        /// CreatedBy TQCONG 5/7/2022
         int Update(MISAEntity entity);
 
         /// <summary>
-        /// delete entity from database
+        /// Xoá entity
         /// </summary>
         /// <param name="id">Id của entity cần xoá</param>
-        /// <returns>trả về 1 nếu xoá thành công</returns>
+        /// <returns>Trả về 1 nếu xoá thành công</returns>
+        /// CreatedBy TQCONG 5/7/2022
         int Delete(Guid id);
+        #endregion
     }
 }

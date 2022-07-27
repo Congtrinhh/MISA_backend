@@ -2,18 +2,18 @@
 {
     /// <summary>
     /// Lớp Vị trí
-    /// Author: trinh quy cong - 03/07/22
+    /// CreatedBy TQCONG - 03/07/2022
     /// </summary>
     public class Positions:BaseEntity
     {
         #region Properties
         /// <summary>
-        /// khoa chinh
+        /// Khoá chính
         /// </summary>
         public Guid PositionId { get; set; }
 
         /// <summary>
-        /// ten vi tri
+        /// Tên vị trí
         /// </summary>
         public string? PositionName { get; set; }
         #endregion

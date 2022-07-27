@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Misa.Web05.Core.Enums
 {
     /// <summary>
-    /// enum giới tính
-    /// Created by Trinh Quy Cong 9/7/22
+    /// Enum giới tính
+    /// Created by TQCONG 9/7/22
     /// </summary>
     public enum Gender
     {

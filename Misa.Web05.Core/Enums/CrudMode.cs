@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Misa.Web05.Core.Enums
 {
     /// <summary>
-    /// trạng thái của quá trình thêm/sửa/xoá 
-    /// Created by Trinh Quy Cong 9/7/22
+    /// Enum trạng thái của quá trình thêm/sửa/xoá 
+    /// Created by TQCONG 9/7/22
     /// </summary>
     public enum CrudMode
     {

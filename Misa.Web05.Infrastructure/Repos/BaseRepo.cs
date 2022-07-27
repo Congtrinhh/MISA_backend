@@ -12,9 +12,9 @@ namespace Misa.Web05.Infrastructure.Repos
 {
     /// <summary>
     /// Class tổng quát thực thi interface IBaseRepo
-    /// Created by Trinh Quy Cong 1/7/22
+    /// Created by TQCONG 1/7/2022
     /// </summary>
-    /// <typeparam name="MISAEntity"></typeparam>
+    /// <typeparam name="MISAEntity">Một trong các class như Employee/Department/Positions/...</typeparam>
     public class BaseRepo<MISAEntity> : IBaseRepo<MISAEntity>
     {
         #region Properties
@@ -55,13 +55,14 @@ namespace Misa.Web05.Infrastructure.Repos
         /// <summary>
         /// Check đối tượng tồn tại trong DB
         /// </summary>
-        /// <param name="id">id đối tượng</param>
+        /// <param name="id">Id đối tượng</param>
         /// <returns>true nếu tồn tại; ngược lại false</returns>
+        /// CreatedBy TQCONG 1/7/2022
         public bool CheckExist(Guid id)
         {
-            // get by id
+            // lấy ra đối tượng theo id
             MISAEntity entity = GetById(id);
-            // nếu tồn tại
+            // nếu đối tượng tồn tại
             if (entity != null)
             {
                 return true;
@@ -73,8 +74,9 @@ namespace Misa.Web05.Infrastructure.Repos
         /// <summary>
         /// Xoá đối tượng khỏi DB
         /// </summary>
-        /// <param name="id">id</param>
+        /// <param name="id">Id đối tượng</param>
         /// <returns>1 nếu xoá thành công</returns>
+        /// CreatedBy TQCONG 1/7/2022
         public int Delete(Guid id)
         {
             // sử dụng khối using với tài nguyên: ngay sau khi kết thúc khối lệnh, tài nguyên được giải phóng
@@ -91,9 +93,10 @@ namespace Misa.Web05.Infrastructure.Repos
         }
 
         /// <summary>
-        /// lấy ra tất cả đối tượng trong DB
+        /// Lấy ra tất cả đối tượng trong DB
         /// </summary>
-        /// <returns>tất cả đối tượng trong DB</returns>
+        /// <returns>Tất cả đối tượng trong DB</returns>
+        /// CreatedBy TQCONG 1/7/2022
         public virtual IEnumerable<MISAEntity> GetAll()
         {
             using (Conn = new MySqlConnection(SqlConnectionString))
@@ -108,10 +111,11 @@ namespace Misa.Web05.Infrastructure.Repos
         }
 
         /// <summary>
-        /// lấy ra đối tượng dựa vào id
+        /// Lấy ra đối tượng dựa vào id
         /// </summary>
-        /// <param name="id">id</param>
-        /// <returns>đối tượng với id tương ứng</returns>
+        /// <param name="id">Id đối tượng</param>
+        /// <returns>Đối tượng với id tương ứng</returns>
+        /// CreatedBy TQCONG 1/7/2022
         public virtual MISAEntity GetById(Guid id)
         {
             using (Conn = new MySqlConnection(SqlConnectionString))
@@ -127,12 +131,13 @@ namespace Misa.Web05.Infrastructure.Repos
         }
 
         /// <summary>
-        /// 
+        /// Lấy ra danh sách đối tượng theo thông tin phân trang
         /// </summary>
-        /// <param name="pageIndex">chỉ số trang, bắt đầu từ 0</param>
-        /// <param name="size">số phần từ trên 1 trang</param>
-        /// <param name="keyword">từ khoá để lọc</param>
-        /// <returns></returns>
+        /// <param name="pageIndex">Chỉ số trang, bắt đầu từ 0</param>
+        /// <param name="size">Số phần từ trên 1 trang</param>
+        /// <param name="keyword">Từ khoá để lọc</param>
+        /// <returns>Danh sách đối tượng và thông tin phân trang</returns>
+        /// CreatedBy TQCONG 1/7/2022
         public Paging GetPaging(int pageIndex, int size, string keyword)
         {
             using (Conn = new MySqlConnection(SqlConnectionString))
@@ -161,10 +166,11 @@ namespace Misa.Web05.Infrastructure.Repos
         }
 
         /// <summary>
-        /// thêm đối tượng vào DB
+        /// Thêm đối tượng vào DB
         /// </summary>
-        /// <param name="entity">đối tượng</param>
+        /// <param name="entity">Đối tượng</param>
         /// <returns>1 nếu thành công</returns>
+        /// CreatedBy TQCONG 1/7/2022
         public int Insert(MISAEntity entity)
         {
             using (Conn = new MySqlConnection(SqlConnectionString))
@@ -179,10 +185,11 @@ namespace Misa.Web05.Infrastructure.Repos
         }
 
         /// <summary>
-        /// sửa đối tượng trong DB
+        /// Sửa đối tượng trong DB
         /// </summary>
-        /// <param name="entity">đối tượng</param>
+        /// <param name="entity">Đối tượng</param>
         /// <returns>1 nếu thành công</returns>
+        /// CreatedBy TQCONG 1/7/2022
         public int Update(MISAEntity entity)
         {
             using (Conn = new MySqlConnection(SqlConnectionString))
@@ -191,7 +198,7 @@ namespace Misa.Web05.Infrastructure.Repos
                 var sql = $"Proc_Update{SqlTableName}";
                 // thực thi cập nhật
                 var res = Conn.Execute(sql, entity, commandType: System.Data.CommandType.StoredProcedure);
-                // tra ve 1 neu thanh cong; 0 neu that bai
+                // trả về 0 nếu thành công; trả về 1 nếu thất bại
                 return res;
             }
         }

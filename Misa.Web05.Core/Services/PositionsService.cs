@@ -12,7 +12,7 @@ namespace Misa.Web05.Core.Services
 {
     // <summary>
     /// Service cho đối tượng Positions
-    /// Created by Trinh quy cong 5/7/22
+    /// Created by TQCONG 5/7/2022
     /// </summary>
     public class PositionsService : BaseService<Positions>, IPositionsService
     {
@@ -33,8 +33,9 @@ namespace Misa.Web05.Core.Services
         /// <summary>
         /// Validate position
         /// </summary>
-        /// <param name="pos">đối tượng</param>
+        /// <param name="pos">Đối tượng position</param>
         /// <returns>true nếu hợp lệ; false nếu không hợp lệ</returns>
+        /// CreatedBy TQCONG 5/7/2022
         protected override bool Validate(Positions pos)
         {
             bool valid = true;

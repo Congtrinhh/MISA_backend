@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 namespace Misa.Web05.Infrastructure.Repos
 {
     /// <summary>
-    /// Class tổng quát cho đối tượng Positions
-    /// Created by trinh quy cong 5/7/22
+    /// Repo cho đối tượng Positions để tương tác với database
+    /// Created by TQCONG 5/7/22
     /// </summary>
     public class PositionsRepo : BaseRepo<Positions>, IPositionsRepo
     {
+        #region Constructor
         public PositionsRepo()
         {
             // lấy ra từ 'Positions'
@@ -22,5 +23,6 @@ namespace Misa.Web05.Infrastructure.Repos
             // , ta sẽ dùng property SqlEntityName kết hợp với SqlTableName để viết câu lệnh sql
             base.SqlEntityName = base.SqlTableName.Substring(0, base.SqlTableName.Length - 1);
         }
+        #endregion
     }
 }

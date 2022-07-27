@@ -11,23 +11,28 @@ namespace Misa.Web05.Core.Interfaces.Services
 {
     /// <summary>
     /// Interface tổng quát của đối tượng Employee
-    /// Created by Trinh Quy Cong 5/7/22
+    /// Created by TQCONG 5/7/2022
     /// </summary>
     public interface IEmployeeService: IBaseService<Employee>
     {
+        #region Methods
+
         /// <summary>
-        /// nhận vào file exel
-        /// trả về danh sách employee tham gia quá trình import 
+        /// Nhận vào file exel
+        /// Trả về danh sách employee tham gia quá trình import 
         /// (nếu import không thành công thì đối tượng sẽ chứa thông báo lỗi)
         /// </summary>
-        /// <param name="file">file excel</param>
+        /// <param name="file">File excel</param>
         /// <returns>Các employee được đưa vào quá trình import</returns>
+        /// CreatedBy TQCONG 5/7/2022
         IEnumerable<Employee> Import(IFormFile file);
 
         /// <summary>
-        /// xuất tất cả employee ra 1 file excel
+        /// Xuất tất cả employee ra 1 file excel
         /// </summary>
-        /// <returns>đối tượng Stream chứa excel file và các thông tin khác</returns>
+        /// <returns>Đối tượng Stream chứa excel file và các thông tin khác</returns>
+        /// CreatedBy TQCONG 5/7/2022
         Stream Export();
+        #endregion
     }
 }

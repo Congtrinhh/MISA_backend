@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace Misa.Web05.Core.Exceptions
 {
     /// <summary>
-    /// custom exception class
-    /// Created by Trinh Quy Cong 6/7/22
+    /// Class custom exception
+    /// Created by TQCONG 6/7/22
     /// </summary>
     public class MISAValidationException : Exception
     {
@@ -42,11 +42,13 @@ namespace Misa.Web05.Core.Exceptions
         /// <summary>
         /// ghi đè property Data của đối tượng Exception để trả về mảng thông báo lỗi
         /// </summary>
+        /// CreatedBy TQCONG 6/7/22
         public override IDictionary Data => this.Errors;
 
         /// <summary>
         /// ghi đè property Message của đối tượng Exception để trả về thông báo lỗi
         /// </summary>
+        /// CreatedBy TQCONG 6/7/22 
         public override string Message => this.ErrorMessage;
         #endregion
     }

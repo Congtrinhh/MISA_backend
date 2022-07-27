@@ -11,16 +11,19 @@ using Dapper;
 namespace Misa.Web05.Infrastructure.Repos
 {
     /// <summary>
-    /// Repo cho employee
-    /// Created by Trinh Quy Cong 9/7/2022
+    /// Repo cho đối tượng Employee để tương tác với database
+    /// Created by TQCONG 9/7/2022
     /// </summary>
     public class EmployeeRepo : BaseRepo<Employee>, IEmployeeRepo
     {
+        #region Methods
+
         /// <summary>
-        /// check employee code tồn tại
+        /// Check employee code tồn tại
         /// </summary>
-        /// <param name="employeeCode">mã code</param>
+        /// <param name="employeeCode">Mã code</param>
         /// <returns>true nếu tồn tại;ngược lại false</returns>
+        /// CreatedBy TQCONG 9/7/2022
         public bool CheckExist(string employeeCode)
         {
             using (base.Conn = new MySqlConnection(base.SqlConnectionString))
@@ -47,8 +50,9 @@ namespace Misa.Web05.Infrastructure.Repos
         /// <summary>
         /// Xoá nhiều employee
         /// </summary>
-        /// <param name="listOfId">mảng employee id</param>
-        /// <returns></returns>
+        /// <param name="listOfId">Mảng employee id</param>
+        /// <returns>Số bản ghi xoá thành công</returns>
+        /// CreatedBy TQCONG 9/7/2022
         public int DeleteMany(Guid[] listOfId)
         {
             using (base.Conn = new MySqlConnection(base.SqlConnectionString))
@@ -73,10 +77,11 @@ namespace Misa.Web05.Infrastructure.Repos
         }
 
         /// <summary>
-        /// get employee by employee code
+        /// Lấy ra employee theo employeeCode
         /// </summary>
-        /// <param name="employeeCode"></param>
-        /// <returns>employee</returns>
+        /// <param name="employeeCode">Mã employeeCode</param>
+        /// <returns>Đố tượng employee</returns>
+        /// CreatedBy TQCONG 9/7/2022
         public Employee GetByEmployeeCode(string employeeCode)
         {
             using (base.Conn = new MySqlConnection(base.SqlConnectionString))
@@ -95,9 +100,10 @@ namespace Misa.Web05.Infrastructure.Repos
         }
 
         /// <summary>
-        /// lấy ra ds tất cả employee
+        /// Lấy ra danh sách tất cả employee
         /// </summary>
-        /// <returns>list employee</returns>
+        /// <returns>List employee</returns>
+        /// CreatedBy TQCONG 9/7/2022
         public override IEnumerable<Employee> GetAll()
         {
             using (base.Conn = new MySqlConnection(base.SqlConnectionString))
@@ -112,10 +118,11 @@ namespace Misa.Web05.Infrastructure.Repos
 
 
         /// <summary>
-        /// get employee by id, sử dụng procedure thay vì câu lệnh sql thường
+        /// Lấy ra employee theo id, sử dụng procedure thay vì câu lệnh sql thường
         /// </summary>
-        /// <param name="id">employee id</param>
-        /// <returns>employee với id tương ứng</returns>
+        /// <param name="id">Employee id</param>
+        /// <returns>Employee với id tương ứng</returns>
+        /// CreatedBy TQCONG 9/7/2022
         public override Employee GetById(Guid id)
         {
             using (base.Conn = new MySqlConnection(base.SqlConnectionString))
@@ -134,9 +141,10 @@ namespace Misa.Web05.Infrastructure.Repos
         }
 
         /// <summary>
-        /// lấy ra employee code mới
+        /// Lấy ra employee code mới
         /// </summary>
-        /// <returns>new employee code</returns>
+        /// <returns>New employee code</returns>
+        /// CreatedBy TQCONG 9/7/2022
         public string GetNewEmployeeCode()
         {
             using (base.Conn = new MySqlConnection(base.SqlConnectionString))
@@ -151,14 +159,16 @@ namespace Misa.Web05.Infrastructure.Repos
         }
 
         /// <summary>
-        /// thêm dữ liệu vào DB và trả về số bản ghi được thêm thành công
+        /// Thêm dữ liệu vào DB và trả về số bản ghi được thêm thành công
         /// </summary>
-        /// <param name="employees">danh sách nhân viên</param>
-        /// <returns>số bản ghi được thêm thành công</returns>
+        /// <param name="employees">Danh sách nhân viên</param>
+        /// <returns>Số bản ghi được thêm thành công</returns>
+        /// CreatedBy TQCONG 9/7/2022
         public int Import(List<Employee> employees)
         {
-            // tạm thời chưa thực thi
+            // TODO Import 
             return 0;
         }
+        #endregion
     }
 }

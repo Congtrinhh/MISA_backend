@@ -7,7 +7,8 @@ using Misa.Web05.Core.Models;
 namespace Misa.Web05.Api.Controllers
 {
     /// <summary>
-    /// Created by trinh quy cong 5/7/22
+    /// Controller cho class Department
+    /// Created by TQCONG 5/7/22
     /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
@@ -16,8 +17,8 @@ namespace Misa.Web05.Api.Controllers
         #region Properties
         IDepartmentService _departmentService;
         IDepartmentRepo _departmentRepo;
-
         #endregion
+
         #region Constructor
         public DepartmentsController(IDepartmentService departmentService, IDepartmentRepo departmentRepo)
         {
@@ -28,12 +29,13 @@ namespace Misa.Web05.Api.Controllers
 
         #region Methods
         /// <summary>
-        /// lấy ra danh sách department và các thông tin phân trang
+        /// Lấy ra danh sách department và các thông tin phân trang
         /// </summary>
-        /// <param name="pageIndex"></param>
-        /// <param name="size"></param>
-        /// <param name="keyword"></param>
+        /// <param name="pageIndex">Trang cần lấy (bắt đầu từ 0)</param>
+        /// <param name="size">Số item/trang</param>
+        /// <param name="keyword">Từ khoá để lọc</param>
         /// <returns>Đối tượng paging chứa danh sách phòng ban và thông tin phân trang</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpGet]
         public IActionResult GetPaging(int? pageIndex, int? size, string? keyword)
         {
@@ -61,9 +63,10 @@ namespace Misa.Web05.Api.Controllers
             }
         }
         /// <summary>
-        /// lấy ra tất cả phòng ban hiện có
+        /// Lấy ra tất cả phòng ban hiện có
         /// </summary>
         /// <returns>Tất cả phòng ban</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpGet("all")]
         public IActionResult GetAll()
         {
@@ -80,10 +83,11 @@ namespace Misa.Web05.Api.Controllers
         }
 
         /// <summary>
-        /// lấy ra phòng ban theo id
+        /// Lấy ra phòng ban theo id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id phòng ban</param>
         /// <returns>Phòng ban tương ứng</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpGet("{id}")]
         public IActionResult getOne(Guid id)
         {
@@ -101,8 +105,9 @@ namespace Misa.Web05.Api.Controllers
         /// <summary>
         /// Tạo phòng ban
         /// </summary>
-        /// <param name="d"></param>
-        /// <returns>trả về 1 nếu thành công</returns>
+        /// <param name="d">Đối tượng phòng ban</param>
+        /// <returns>Trả về 1 nếu thành công</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpPost]
         public IActionResult CreateOne(Department d)
         {
@@ -121,8 +126,9 @@ namespace Misa.Web05.Api.Controllers
         /// <summary>
         /// Cập nhật phòng ban
         /// </summary>
-        /// <param name="dep"></param>
+        /// <param name="dep">Đối tượng phòng ban</param>
         /// <returns>Trả về 1 nếu thành công</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpPut]
         public IActionResult Update(Department dep)
         {
@@ -140,8 +146,9 @@ namespace Misa.Web05.Api.Controllers
         /// <summary>
         /// Xoá phòng ban
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id phòng ban</param>
         /// <returns>Trả về 1 nếu thành công</returns>
+        /// CreatedBy TQCONG 5/7/22
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {

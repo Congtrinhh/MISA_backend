@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 namespace Misa.Web05.Infrastructure.Repos
 {
     /// <summary>
-    /// Class tổng quát cho đối tượng Department
-    /// Created by trinh quy cong 5/7/22
+    /// Repo cho đối tượng Department để tương tác với database
+    /// Created by TQCONG 5/7/2022
     /// </summary>
     public class DepartmentRepo : BaseRepo<Department>, IDepartmentRepo
     {

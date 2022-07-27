@@ -124,7 +124,7 @@ namespace Misa.Web05.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mã code nhân viên đã tồn tại.
+        ///   Looks up a localized string similar to Mã nhân viên &amp;lt;{0}&amp;gt; đã tồn tại trong hệ thống, vui lòng kiểm tra lại..
         /// </summary>
         public static string EmployeeCodeExists {
             get {

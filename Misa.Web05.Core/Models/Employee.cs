@@ -4,88 +4,88 @@ namespace Misa.Web05.Core.Models
 {
     /// <summary>
     /// Lớp Nhân viên
-    /// Author: Trinh Quy Cong - 03/07/22
+    /// CreatedBy TQCONG - 03/07/2022
     /// </summary>
     public class Employee:BaseEntity
     {
         #region Properties
         /// <summary>
-        /// khoa chinh
+        /// Khoá chính
         /// </summary>
         public Guid EmployeeId { get; set; }
 
         /// <summary>
-        /// ma nhan vien
+        /// Mã nhân viên
         /// </summary>
         public string EmployeeCode { get; set; }
 
         /// <summary>
-        /// ten nhan vien
+        /// Tên nhân viên
         /// </summary>
         public string FullName { get; set; }
 
         /// <summary>
-        /// gioi tinh
+        /// Giới tính
         /// </summary>
         public Gender? Gender { get; set; }
 
         /// <summary>
-        /// ngay sinh
+        /// Ngày sinh
         /// </summary>
         public DateTime? DateOfBirth { get; set; }
 
         /// <summary>
-        /// email
+        /// Địa chỉ email
         /// </summary>
         public string? Email { get; set; }
 
         /// <summary>
-        /// so dien thoai
+        /// Số điện thoại
         /// </summary>
         public string? PhoneNumber { get; set; }
 
         /// <summary>
-        /// dia chi
+        /// Địa chỉ
         /// </summary>
         public string? Address { get; set; }
 
         /// <summary>
-        /// so chung minh nhan dan
+        /// Số chứng minh nhân dân
         /// </summary>
         public string? IdentityNumber { set; get; }
 
         /// <summary>
-        /// luong
+        /// Lương
         /// </summary>
         public decimal? Salary { get; set; }
 
         /// <summary>
-        /// ma phong ban
+        /// Mã phòng ban
         /// </summary>
         public Guid? DepartmentId { get; set; }
 
         /// <summary>
-        /// ma vi tri
+        /// Mã vị trí
         /// </summary>
         public Guid? PositionId { get; set; }
 
         /// <summary>
-        /// ten ngan hang
+        /// Tên ngân hàng
         /// </summary>
         public string? BankName { get; set; }
 
         /// <summary>
-        /// tên phòng ban
+        /// Tên phòng ban
         /// </summary>
         public string? DepartmentName { get; set; }
 
         /// <summary>
-        /// tên vị trí
+        /// Tên vị trí
         /// </summary>
         public string? PositionName { get; set; }
 
         /// <summary>
-        /// tên giới tính: nam, nữ, khác
+        /// Tên giới tính: nam, nữ, khác
         /// </summary>
         public string? GenderName { get
             {
@@ -101,22 +101,22 @@ namespace Misa.Web05.Core.Models
         }
 
         /// <summary>
-        /// ngày tháng năm đăng ký cmnd
+        /// Ngày tháng năm đăng ký cmnd
         /// </summary>
         public DateTime? IdentityDate { get; set; }
 
         /// <summary>
-        /// số tk ngân hàng
+        /// Số tài khoản ngân hàng
         /// </summary>
         public string? BankAccountNumber { get; set; }
 
         /// <summary>
-        /// tên chi nhánh ngân hàng
+        /// Tên chi nhánh ngân hàng
         /// </summary>
         public string? BankBranchName { get; set; }
 
         /// <summary>
-        /// nới đăng ký cmnd
+        /// Nơi đăng ký chứng minh nhân dân
         /// </summary>
         public string? IdentityPlace { get; set; }
 

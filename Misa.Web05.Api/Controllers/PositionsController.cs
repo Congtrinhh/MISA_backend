@@ -7,7 +7,8 @@ using Misa.Web05.Core.Models;
 namespace Misa.Web05.Api.Controllers
 {
     /// <summary>
-    /// Created by trinh quy cong 5/7/22
+    /// Controller cho class Positions
+    /// Created by TQCONG - 5/7/22
     /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
@@ -28,12 +29,13 @@ namespace Misa.Web05.Api.Controllers
 
         #region Methods
         /// <summary>
-        /// lấy ra danh sách vị trí và các thông tin phân trang
+        /// Lấy ra danh sách vị trí và các thông tin phân trang
         /// </summary>
-        /// <param name="pageIndex"></param>
-        /// <param name="size"></param>
-        /// <param name="keyword"></param>
-        /// <returns>danh sách vị trí và các thông tin phân trang</returns>
+        /// <param name="pageIndex">Trang cần lấy (bắt đầu từ 0)</param>
+        /// <param name="size">Số bản ghi/trang</param>
+        /// <param name="keyword">Từ khoá tìm kiếm</param>
+        /// <returns>Danh sách vị trí và các thông tin phân trang</returns>
+        /// CreatedBy TQCONG - 5/7/22
         [HttpGet]
         public IActionResult GetPaging(int? pageIndex, int? size, string? keyword)
         {
@@ -62,9 +64,10 @@ namespace Misa.Web05.Api.Controllers
         }
 
         /// <summary>
-        /// lấy ra tất cả position hiện có
+        /// Lấy ra tất cả position hiện có
         /// </summary>
-        /// <returns>tất cả position</returns>
+        /// <returns>Tất cả position</returns>
+        /// CreatedBy TQCONG - 5/7/22
         [HttpGet("all")]
         public IActionResult GetAll()
         {
@@ -83,8 +86,9 @@ namespace Misa.Web05.Api.Controllers
         /// <summary>
         /// Lấy ra position theo id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id position</param>
         /// <returns>Position tương ứng</returns>
+        /// CreatedBy TQCONG - 5/7/22
         [HttpGet("{id}")]
         public IActionResult getOne(Guid id)
         {
@@ -102,8 +106,9 @@ namespace Misa.Web05.Api.Controllers
         /// <summary>
         /// Tạo position
         /// </summary>
-        /// <param name="pos"></param>
+        /// <param name="pos">Đối tượng position</param>
         /// <returns>1 nếu thành công</returns>
+        /// CreatedBy TQCONG - 5/7/22
         [HttpPost]
         public IActionResult CreateOne(Positions pos)
         {
@@ -122,8 +127,9 @@ namespace Misa.Web05.Api.Controllers
         /// <summary>
         /// Cập nhật position
         /// </summary>
-        /// <param name="pos"></param>
+        /// <param name="pos">Đối tượng position</param>
         /// <returns>1 nếu thành công</returns>
+        /// CreatedBy TQCONG - 5/7/22
         [HttpPut]
         public IActionResult Update(Positions pos)
         {
@@ -141,8 +147,9 @@ namespace Misa.Web05.Api.Controllers
         /// <summary>
         /// Xoá position
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id position</param>
         /// <returns>1 nếu thành công</returns>
+        /// CreatedBy TQCONG - 5/7/22
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {

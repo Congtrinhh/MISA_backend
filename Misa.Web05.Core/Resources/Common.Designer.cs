@@ -86,5 +86,32 @@ namespace Misa.Web05.Core.Resources {
                 return ResourceManager.GetString("PageSizeDefault", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$.
+        /// </summary>
+        public static string RegexEmail {
+            get {
+                return ResourceManager.GetString("RegexEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ^NV-\d{4}$.
+        /// </summary>
+        public static string RegexEmployeeCode {
+            get {
+                return ResourceManager.GetString("RegexEmployeeCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$.
+        /// </summary>
+        public static string RegexPhoneNumber {
+            get {
+                return ResourceManager.GetString("RegexPhoneNumber", resourceCulture);
+            }
+        }
     }
 }

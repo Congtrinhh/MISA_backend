@@ -19,7 +19,7 @@ namespace Misa.Web05.Core.Services
 {
     /// <summary>
     /// Service cho đối tượng Employee
-    /// Created by Trinh quy cong 5/7/22
+    /// Created by TQCONG 5/7/2022
     /// </summary>
     public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
@@ -36,10 +36,15 @@ namespace Misa.Web05.Core.Services
             _employeeRepo = employeeRepo;
         }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
-        /// xuất tất cả employee ra 1 file excel
+        /// Xuất tất cả employee ra 1 file excel
         /// </summary>
-        /// <returns>đối tượng Stream chứa excel file và các thông tin khác</returns>
+        /// <returns>Đối tượng Stream chứa excel file và các thông tin khác</returns>
+        /// CreatedBy TQCONG 5/7/2022
         public Stream Export()
         {
             List<Employee> allEmployees = _employeeRepo.GetAll().ToList();
@@ -87,7 +92,18 @@ namespace Misa.Web05.Core.Services
                     worksheet.Cells[forLoopIndex, 2].Value = CommonMethods.GetEmptyStringIfNull(emp.EmployeeCode);
                     worksheet.Cells[forLoopIndex, 3].Value = CommonMethods.GetEmptyStringIfNull(emp.FullName);
                     worksheet.Cells[forLoopIndex, 4].Value = CommonMethods.GetEmptyStringIfNull(emp.GenderName);
-                    worksheet.Cells[forLoopIndex, 5].Value = emp.DateOfBirth == null ? "" : emp.DateOfBirth;
+
+                    //worksheet.Cells[forLoopIndex, 5].Value = emp.DateOfBirth == null ? "" : emp.DateOfBirth;
+                    if (emp.DateOfBirth != null)
+                    {
+                        worksheet.Cells[forLoopIndex, 5].Value = string.Format("{0:dd/MM/yyyy}", emp.DateOfBirth);
+                        worksheet.Cells[forLoopIndex, 5].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                    }
+                    else
+                    {
+                        worksheet.Cells[forLoopIndex, 5].Value = "";
+                    }
+
                     worksheet.Cells[forLoopIndex, 6].Value = CommonMethods.GetEmptyStringIfNull(emp.PositionName);
                     worksheet.Cells[forLoopIndex, 7].Value = CommonMethods.GetEmptyStringIfNull(emp.DepartmentName);
                     worksheet.Cells[forLoopIndex, 8].Value = CommonMethods.GetEmptyStringIfNull(emp.BankAccountNumber);
@@ -122,13 +138,15 @@ namespace Misa.Web05.Core.Services
         }
 
         /// <summary>
-        /// thực hiện import employee từ file excel
+        /// Thực hiện import employee từ file excel
         /// và trả về tất cả employee tham gia vào quá trình import này
         /// </summary>
-        /// <param name="file">file excel</param>
+        /// <param name="file">File excel</param>
         /// <returns>Tất cả employee tham gia vào quá trình import</returns>
+        /// CreatedBy TQCONG 5/7/2022
         public IEnumerable<Employee> Import(IFormFile file)
         {
+            // TODO Import
             // Validate tệp
 
             // Định dạng tệp
@@ -139,8 +157,9 @@ namespace Misa.Web05.Core.Services
         /// <summary>
         /// Validate employee
         /// </summary>
-        /// <param name="emp">employee</param>
+        /// <param name="emp">Đối tượng employee</param>
         /// <returns>true nếu hợp lệ; false nếu không hợp lệ</returns>
+        /// CreatedBy TQCONG 5/7/2022
         protected override bool Validate(Employee emp)
         {
             bool valid = true;
@@ -158,7 +177,9 @@ namespace Misa.Web05.Core.Services
                 if (_employeeRepo.CheckExist(emp.EmployeeCode))
                 {
                     valid = false;
-                    ErrorMessages.Add(Resources.ExceptionErrorMessage.EmployeeCodeExists);
+                    string localErrorMsg = string.Format(Resources.ExceptionErrorMessage.EmployeeCodeExists, emp.EmployeeCode);
+                    ErrorMessages.Add(localErrorMsg);
+                    return valid;
                 }
             }
 
@@ -166,7 +187,7 @@ namespace Misa.Web05.Core.Services
             if (base.CrudMode.Equals(Enums.CrudMode.Update))
             {
                 // check employee id khác null (khi thêm mới không cần employeeId vì trong DB tự sinh)
-                if (string.IsNullOrEmpty(emp.EmployeeId.ToString()))
+                if (emp.EmployeeId == Guid.Empty)
                 {
                     valid = false;
                     ErrorMessages.Add(Resources.ExceptionErrorMessage.EmployeeIdNull);
@@ -175,16 +196,22 @@ namespace Misa.Web05.Core.Services
                 var currentEmployee = _employeeRepo.GetById(emp.EmployeeId);
                 // nhân viên theo mã code mới
                 var employeeFromDB = _employeeRepo.GetByEmployeeCode(emp.EmployeeCode);
+
                 // nếu 2 nhân viên này khác nhau, tức mã code mới đã tồn tại
-                if (!currentEmployee.EmployeeId.Equals(employeeFromDB.EmployeeId))
+                if (currentEmployee != null && employeeFromDB != null)
                 {
-                    valid = false;
-                    ErrorMessages.Add(Resources.ExceptionErrorMessage.EmployeeCodeExists);
+                    if (!currentEmployee.EmployeeId.Equals(employeeFromDB.EmployeeId))
+                    {
+                        valid = false;
+                        string localErrorMsg = string.Format(Resources.ExceptionErrorMessage.EmployeeCodeExists, emp.EmployeeCode);
+                        ErrorMessages.Add(localErrorMsg);
+                        return valid;
+                    }
                 }
             }
 
-            // check employee code đúng định dạng; ví dụ định dạng hợp lệ: NV-12345789
-            var patternEmployeeCode = @"^NV-\d{8}$";
+            // check employee code đúng định dạng; ví dụ định dạng hợp lệ: NV-1230
+            var patternEmployeeCode = $@"{Resources.Common.RegexEmployeeCode}";
             Regex regexEmployeeCode = new Regex(patternEmployeeCode);
             if (!regexEmployeeCode.IsMatch(emp.EmployeeCode))
             {
@@ -206,7 +233,7 @@ namespace Misa.Web05.Core.Services
                 ErrorMessages.Add(Resources.ExceptionErrorMessage.EmailInvalid);
             }
 
-            // validate date of birth smaller than current date
+            // validate ngày sinh phải nhỏ hơn hoặc bằng ngày hiện tại
             if (emp.DateOfBirth != null)
             {
                 if (DateTime.Compare(DateTime.Now, (DateTime)emp.DateOfBirth) < 0)
@@ -216,7 +243,7 @@ namespace Misa.Web05.Core.Services
                 }
             }
 
-            // validate identity date smaller than current date
+            // validate cấp chứng minh nhân dân phải nhỏ hơn hoặc bằng ngày hiện tại
             if (emp.IdentityDate != null)
             {
                 if (DateTime.Compare(DateTime.Now, (DateTime)emp.IdentityDate) < 0)
@@ -226,7 +253,7 @@ namespace Misa.Web05.Core.Services
                 }
             }
 
-            // validate phone number
+            // validate số điện thoại
             if (!string.IsNullOrEmpty(emp.PhoneNumber) && !CommonMethods.IsPhoneNumberValid(emp.PhoneNumber))
             {
                 valid = false;
@@ -235,10 +262,6 @@ namespace Misa.Web05.Core.Services
 
             return valid;
         }
-        #endregion
-
-        #region Methods
-
         #endregion
     }
 }

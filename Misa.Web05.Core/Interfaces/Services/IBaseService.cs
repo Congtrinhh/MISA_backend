@@ -8,23 +8,28 @@ namespace Misa.Web05.Core.Interfaces.Services
 {
     /// <summary>
     /// Interface tổng quát cho các service 
-    /// Created by Trinh Quy Cong 5/7/22
+    /// Created by TQCONG 5/7/2022
     /// </summary>
-    /// <typeparam name="MISAEntity"></typeparam>
+    /// <typeparam name="MISAEntity">Một trong các class như Employee, Department,..</typeparam>
     public interface IBaseService<MISAEntity>
     {
+        #region Methods
+
         /// <summary>
         /// Thực hiện logic nghiệp vụ và thêm đối tượng vào DB
         /// </summary>
-        /// <param name="entity">đối tượng</param>
+        /// <param name="entity">Đối tượng</param>
         /// <returns>1 - nếu thêm thành công</returns>
+        /// CreatedBy TQCONG 5/7/2022
         int Insert(MISAEntity entity);
 
         /// <summary>
         /// Thực hiện logic nghiệp vụ và thêm đối tượng vào DB
         /// </summary>
-        /// <param name="entity">đối tượng</param>
+        /// <param name="entity">Đối tượng</param>
         /// <returns>1 - nếu thêm thành công</returns>
+        /// CreatedBy TQCONG 5/7/2022
         int Update(MISAEntity entity);
+        #endregion
     }
 }

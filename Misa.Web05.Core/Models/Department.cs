@@ -2,18 +2,18 @@
 {
     /// <summary>
     /// Lớp phòng ban
-    /// Author: Trinh Quy Cong - 03/07/22
+    /// CreatedBy TQCONG - 03/07/2022
     /// </summary>
     public class Department:BaseEntity
     {
         #region Properties
         /// <summary>
-        /// khoa chinh
+        /// Khoá chính
         /// </summary>
         public Guid DepartmentId { get; set; }
 
         /// <summary>
-        /// ten phong ban
+        /// Tên phòng ban
         /// </summary>
         public string? DepartmentName { get; set; }
 
