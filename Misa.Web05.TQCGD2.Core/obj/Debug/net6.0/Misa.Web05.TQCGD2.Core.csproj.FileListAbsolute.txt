@@ -1,0 +1,15 @@
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\bin\Debug\net6.0\Misa.Web05.TQCGD2.Core.deps.json
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\bin\Debug\net6.0\Misa.Web05.TQCGD2.Core.dll
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\bin\Debug\net6.0\Misa.Web05.TQCGD2.Core.pdb
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\Misa.Web05.TQCGD2.Core.csproj.AssemblyReference.cache
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\Misa.Web05.TQCGD2.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\Misa.Web05.TQCGD2.Core.AssemblyInfoInputs.cache
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\Misa.Web05.TQCGD2.Core.AssemblyInfo.cs
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\Misa.Web05.TQCGD2.Core.csproj.CoreCompileInputs.cache
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\Misa.Web05.TQCGD2.Core.dll
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\refint\Misa.Web05.TQCGD2.Core.dll
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\Misa.Web05.TQCGD2.Core.pdb
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\ref\Misa.Web05.TQCGD2.Core.dll
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\Misa.Web05.TQCGD2.Core.Resources.Common.resources
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\Misa.Web05.TQCGD2.Core.csproj.GenerateResource.cache
+C:\Users\trinh\Documents\vscode\misa\asp dot net\Misa.Web05.TQCGD2\Misa.Web05.TQCGD2.Core\obj\Debug\net6.0\Misa.Web05.TQCGD2.Core.Resources.ExceptionErrorMessage.resources
