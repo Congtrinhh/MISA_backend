@@ -17,8 +17,8 @@ namespace Misa.Web05.TQCGD2.Core.Models.Paging
         /// <summary>
         /// Tìm kiếm từ khoá trong họ tên
         /// </summary>
-        [JsonProperty("fullName")]
-        public string? FullName { get; set; } = string.Empty;
+        [JsonProperty("keyword")]
+        public string? Keyword { get; set; } = string.Empty;
 
         /// <summary>
         /// Tìm kiếm theo id vai trò

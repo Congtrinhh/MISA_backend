@@ -191,9 +191,13 @@ namespace Misa.Web05.TQCGD2.Infrastructure.Repos
             // cast class và nhận về class mới với kiểu đã được cast
             if (paginationRequest is UserPaginationRequest userPaginationRequest)
             {
-                if (!string.IsNullOrEmpty(userPaginationRequest.FullName))
+                if (!string.IsNullOrEmpty(userPaginationRequest.Keyword))
                 {
-                    sb.Append($" AND FULLNAME LIKE '%{userPaginationRequest.FullName}%'");
+                    sb.Append(
+                        $" AND (u.FullName LIKE '%{userPaginationRequest.Keyword}%' OR u.Email LIKE '%{userPaginationRequest.Keyword}%' " + 
+                        $" OR u.UserCode LIKE '%{userPaginationRequest.Keyword}%' OR d.Name LIKE '%{userPaginationRequest.Keyword}%' " +
+                        $" OR p.Name LIKE '%{userPaginationRequest.Keyword}%')"
+                        );
                 }
                 if (userPaginationRequest.RoleId != null && userPaginationRequest.RoleId > 0)
                 {
